@@ -4,7 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Company Network</title>
-    <link rel="stylesheet" href="{{ url('css/bootstrap.min.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('bootstrap-4-alpha-5/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url('css/bootstrap-submenu.min.css') }}">
+
+    <script src="https://use.fontawesome.com/35b861f9fb.js"></script>
+    <script src="{{ url('js/jquery-3.1.1.js') }}"></script>
+    <script src="{{ url('js/tether.min.js') }}"></script>
+    <script src="{{ url('bootstrap-4-alpha-5/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url('js/bootstrap-submenu.min.js') }}"></script>
+
+    <style>
+      body {
+        font-family: 'Kanit', sans-serif;
+      }
+    </style>
+
   </head>
   <body>
 
@@ -13,12 +28,13 @@
       @include('layouts.promotion')
       @include('layouts.menu')
       @yield('content')
+      @include('layouts.footer')
     </div>
 
-    @include('layouts.footer')
-
-    <script src="https://use.fontawesome.com/35b861f9fb.js"></script>
+    <!-- <script src="https://use.fontawesome.com/35b861f9fb.js"></script>
     <script src="{{ url('js/jquery-3.1.1.js') }}"></script>
-    <script src="{{ url('js/bootstrap.min.js')}}"></script>
+    <script src="{{ url('js/tether.min.js') }}"></script>
+    <script src="{{ url('bootstrap-4-alpha-5/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url('js/bootstrap-submenu.min.js') }}"></script> -->
   </body>
 </html>
