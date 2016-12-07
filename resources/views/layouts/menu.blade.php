@@ -7,7 +7,7 @@
     <ul class="nav navbar-nav">
 
       <li class="nav-item active">
-        <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
       </li>
 
       <li class="nav-item dropdown">
@@ -185,6 +185,10 @@
 
       <li class="nav-item">
         <a class="nav-link" href="#">HOW TO BUY</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('quotation/upload') }}">UPLOAD_QUOTATION</a>
       </li>
 
       <li class="nav-item">

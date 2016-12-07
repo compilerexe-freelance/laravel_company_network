@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-md">
     <div class="text-md-right">
-      <a href="#"><button type="button" class="btn btn-info" style="border-radius: 0px;">สร้างใบเสนอราคา</button></a>
-      <a href="#"><button type="button" class="btn btn-success" style="border-radius: 0px;">Sign in : Partner / User</button></a>
+      <a href="{{ url('product/type') }}"><button type="button" class="btn btn-info" style="border-radius: 0px;">สร้างใบเสนอราคา</button></a>
+      <a href="{{ url('user/login') }}"><button type="button" class="btn btn-success" style="border-radius: 0px;">Sign in : Partner / User</button></a>
     </div>
   </div>
   <div class="col-md">
