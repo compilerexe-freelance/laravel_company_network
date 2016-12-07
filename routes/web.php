@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('user.home');
 });
 
+Route::get('about', 'UserController@getAbout');
+Route::get('news', 'UserController@getNews');
+Route::get('news/read', 'UserController@getReadNews');
+Route::get('contact', 'UserController@getContact');
+
 Route::group(['prefix' => 'user'], function() {
   Route::get('login', 'UserController@getFormLogin');
 });

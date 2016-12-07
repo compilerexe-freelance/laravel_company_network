@@ -3,7 +3,7 @@
   <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
   <div class="collapse navbar-toggleable-xs" id="navbar-header">
 
-    <a class="navbar-brand" href="#"><span style="color: #ffffb3;">Company</span></a>
+    <a class="navbar-brand" href="{{ url('/') }}"><span style="color: #ffffb3;">Company</span></a>
     <ul class="nav navbar-nav">
 
       <li class="nav-item active">
@@ -164,11 +164,11 @@
       <!-- END SOLUTION -->
 
       <li class="nav-item">
-        <a class="nav-link" href="#">ABOUT</a>
+        <a class="nav-link" href="{{ url('about') }}">ABOUT</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">NEWS</a>
+        <a class="nav-link" href="{{ url('news') }}">NEWS</a>
       </li>
 
       <li class="nav-item dropdown">
@@ -192,7 +192,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">CONTACT</a>
+        <a class="nav-link" href="{{ url('contact') }}">CONTACT</a>
       </li>
 
     </ul>

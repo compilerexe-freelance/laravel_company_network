@@ -10,6 +10,22 @@ class UserController extends Controller
         return view('user.login');
     }
 
+    public function getAbout() {
+        return view('user.about');
+    }
+
+    public function getNews() {
+        return view('user.news');
+    }
+
+    public function getReadNews() {
+        return view('user.read_news');
+    }
+
+    public function getContact() {
+        return view('user.contact');
+    }
+
     public function getProductDetail() {
         return view('user.product_detail');
     }

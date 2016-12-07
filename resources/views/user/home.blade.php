@@ -73,11 +73,11 @@
       <div class="form-group">
         <div class="list-group">
           <li class="list-group-item" style="background-color: #f2f2f2;"><strong style="font-size: 18px; //color: white;"><i class="fa fa-feed"></i> ข่าวสาร / โปรโมชั่น</strong></li>
-          <li class="list-group-item">ข่าวสาร ...</li>
-          <li class="list-group-item">ข่าวสาร ...</li>
-          <li class="list-group-item">ข่าวสาร ...</li>
-          <li class="list-group-item">โปรโมชั่น ...</li>
-          <li class="list-group-item">โปรโมชั่น ...</li>
+          <li class="list-group-item"><a href="{{ url('news/read') }}">ข่าวสาร ...</a></li>
+          <li class="list-group-item"><a href="{{ url('news/read') }}">ข่าวสาร ...</a></li>
+          <li class="list-group-item"><a href="{{ url('news/read') }}">ข่าวสาร ...</a></li>
+          <li class="list-group-item"><a href="{{ url('news/read') }}">โปรโมชั่น ...</a></li>
+          <li class="list-group-item"><a href="{{ url('news/read') }}">โปรโมชั่น ...</a></li>
         </div>
       </div>
 
