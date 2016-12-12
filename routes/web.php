@@ -24,6 +24,31 @@ Route::group(['prefix' => 'user'], function() {
   Route::get('login', 'UserController@getFormLogin');
 });
 
+Route::group(['prefix' => 'admin'], function() {
+  Route::get('main', 'AdminController@getMain');
+
+  Route::group(['prefix' => 'manage'], function() {
+
+    Route::get('main_category', 'MainCategoryController@getMainCategory')->name('main_category');
+    Route::post('main_category/insert', 'MainCategoryController@postMainCategoryInsert');
+    Route::get('main_category/update/{id}', 'MainCategoryController@getMainCategoryUpdate');
+    Route::post('main_category/update/{id}', 'MainCategoryController@postMainCategoryUpdate');
+    Route::get('main_category/delete/{id}', 'MainCategoryController@getMainCategoryDelete');
+
+    Route::get('category', 'CategoryController@getCategory');
+    Route::post('category/insert', 'CategoryController@postCategoryInsert');
+    Route::get('category/update/{id}', 'CategoryController@getCategoryUpdate');
+    Route::post('category/update/{id}', 'CategoryController@postCategoryUpdate');
+    Route::get('category/delete/{id}', 'CategoryController@getCategoryDelete');
+
+    Route::get('sub_category', 'SubCategoryController@getSubCategory');
+
+
+  });
+
+
+});
+
 Route::group(['prefix' => 'product'], function() {
   Route::get('detail', 'UserController@getProductDetail');
   Route::get('type', 'UserController@getProductType');
