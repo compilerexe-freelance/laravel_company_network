@@ -46,7 +46,6 @@ class CompanyNetwork extends Migration
             $table->increments('id');
             $table->integer('id_category');
             $table->string('sub_category_name');
-            $table->string('link');
             $table->timestamps();
         });
 

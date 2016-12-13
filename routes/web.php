@@ -42,7 +42,12 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('category/delete/{id}', 'CategoryController@getCategoryDelete');
 
     Route::get('sub_category', 'SubCategoryController@getSubCategory');
-
+    Route::post('ajax/id_category', 'SubCategoryController@postAjaxIdCategory');
+    Route::post('ajax/category', 'SubCategoryController@postAjaxCategory');
+    Route::post('sub_category/insert', 'SubCategoryController@postSubCategoryInsert');
+    Route::get('sub_category/update/{id}', 'SubCategoryController@getSubCategoryUpdate');
+    Route::post('sub_category/update/{id}', 'SubCategoryController@postSubCategoryUpdate');
+    Route::get('sub_category/delete/{id}', 'SubCategoryController@getSubCategoryDelete');
 
   });
 

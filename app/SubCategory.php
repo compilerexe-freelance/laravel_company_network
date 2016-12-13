@@ -10,7 +10,6 @@ class SubCategory extends Model
 
     protected $fillable = [
       'id_category',
-      'sub_category_name',
-      'link'
+      'sub_category_name'
     ];
 }

@@ -42,14 +42,8 @@
                 <form action="{{ url('admin/manage/main_category/update/'.$get_main_category->id) }}" method="post">
                   {{ csrf_field() }}
                   <tr>
-                    <td class="align-middle table-none-border" style="color: red;">Edit Main Category Name</td>
-                    <td class="table-none-border" style="color: red;">{{ $get_main_category->main_category_name }}</td>
-                    <td class="table-none-border"></td>
-                    <td class="table-none-border"></td>
-                  </tr>
-                  <tr>
-                    <td class="align-middle table-none-border">Change Category Name</td>
-                    <td class="table-none-border"><input type="text" class="form-control" name="main_category_name" value=""></td>
+                    <td class="align-middle table-none-border"  style="color: red;">Change Category Name</td>
+                    <td class="table-none-border"><input type="text" class="form-control" name="main_category_name" value="{{ $get_main_category->main_category_name }}"></td>
                     <td class="table-none-border"><button type="submit" class="btn btn-success" style="width: 100px;">Save</button></td>
                     <td class="table-none-border"><a href="{{ url('admin/manage/main_category') }}"><button type="button" class="btn btn-warning" style="width: 100px;">Cancle</button></a></td>
                   </tr>
