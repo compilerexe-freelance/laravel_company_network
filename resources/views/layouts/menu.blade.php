@@ -14,6 +14,85 @@
         <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="menu-product">PRODUCT</a>
 
         <ul class="dropdown-menu">
+          @foreach ($main_categorys as $main_category)
+            <li class="dropdown-submenu" id="state-submenu-{{ $main_category->main_category_name }}">
+              <a class="dropdown-item" href="#" id="submenu-{{ $main_category->main_category_name }}">{{ $main_category->main_category_name }}</a>
+
+              <ul class="dropdown-menu">
+                @foreach ($categorys as $category)
+                  @if ($category->id_main_category == $main_category->id)
+                    <li class="dropdown-submenu" id="state-submenu-{{ $category->category_name }}">
+                      <a class="dropdown-item" href="#" id="submenu-{{ $category->category_name }}">{{ $category->category_name }}</a>
+                      <ul class="dropdown-menu">
+                        @foreach ($sub_categorys as $sub_category)
+                          @if ($sub_category->id_category == $category->id)
+                            <li><a class="dropdown-item" href="#">{{ $sub_category->sub_category_name }}</a></li>
+                          @endif
+                        @endforeach
+                      </ul>
+                    </li>
+                  @endif
+                @endforeach
+              </ul>
+
+            </li>
+
+            <script>
+              $(document).ready(function() {
+
+                $('#submenu-{{ $main_category->main_category_name }}').on('mouseover', function() {
+                  $('#state-submenu-{{ $main_category->main_category_name }}').attr('class', 'dropdown-submenu open');
+                  @php
+                    foreach ($main_categorys as $buffer_main_category) {
+                      if ($buffer_main_category->main_category_name != $main_category->main_category_name) {
+                        echo "$('#state-submenu-". $buffer_main_category->main_category_name . "').attr('class', 'dropdown-submenu');";
+                      }
+                    }
+
+                    foreach ($main_categorys as $buffer_main_category) {
+                      foreach ($categorys as $category) {
+                        if ($buffer_main_category->id == $category->id_main_category) {
+                          echo "$('#state-submenu-". $category->category_name . "').attr('class', 'dropdown-submenu');";
+                        }
+                      }
+                    }
+
+                  @endphp
+                });
+
+                @php
+                  foreach ($categorys as $category) {
+                    echo "$('#submenu-". $category->category_name ."').on('mouseover', function() {
+                      $('#state-submenu-". $category->category_name ."').attr('class', 'dropdown-submenu open');";
+
+                      foreach ($categorys as $buffer_category) {
+                        if ($buffer_category->category_name != $category->category_name) {
+                          echo "$('#state-submenu-". $buffer_category->category_name ."').attr('class', 'dropdown-submenu');";
+                        }
+                      }
+
+                    echo "});";
+                  }
+                @endphp
+
+              });
+            </script>
+          @endforeach
+
+          <script>
+            $(document).ready(function() {
+              $('#menu-product').on('click', function() {
+                @php
+                  foreach ($main_categorys as $main_category) {
+                    echo "$('#state-submenu-". $main_category->main_category_name ."').attr('class', 'dropdown-submenu');";
+                  }
+                @endphp
+              });
+            });
+          </script>
+        </ul>
+
+        <!-- <ul class="dropdown-menu">
 
           <li class="dropdown-submenu" id="state-submenu-software">
             <a class="dropdown-item" href="#" id="submenu-software">SOFTWARE</a>
@@ -118,7 +197,8 @@
             </ul>
           </li>
 
-        </ul> <!-- end product menu-->
+        </ul>  -->
+        <!-- end product menu-->
       </li>
 
       <!-- SOLUTION -->

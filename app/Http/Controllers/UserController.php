@@ -3,9 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\MainCategory;
+use App\Category;
+use App\SubCategory;
 
 class UserController extends Controller
 {
+    public function getHome() {
+        $main_categorys = MainCategory::all();
+        $categorys = Category::all();
+        $sub_categorys = SubCategory::all();
+        return view('user.home')
+        ->with('main_categorys', $main_categorys)
+        ->with('categorys', $categorys)
+        ->with('sub_categorys', $sub_categorys);
+    }
+
     public function getFormLogin() {
         return view('user.login');
     }
