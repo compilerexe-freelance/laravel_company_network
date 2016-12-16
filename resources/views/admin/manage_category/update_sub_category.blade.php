@@ -7,9 +7,9 @@
       <div class="card" style="border-radius: 0px;">
         <div class="card-block text-md-center">
 
-          <div class="col-md-8 offset-md-2">
+          <div class="col-md-10 offset-md-1">
             <table class="table table-bordered table-hover">
-              <thead class="thead-default">
+              <thead class="thead-inverse">
                 <tr>
                   <th class="align-middle text-md-center">No.</th>
                   <th class="align-middle text-md-center">Main Category</th>
@@ -52,7 +52,7 @@
             </table>
           </div>
 
-          <div class="col-md-8 offset-md-2">
+          <div class="col-md-10 offset-md-1">
             <table class="table">
               <thead>
                 <tr>

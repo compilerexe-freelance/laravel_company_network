@@ -27,6 +27,24 @@
         </div>
       </li>
 
+      @if (session()->get('menu_active') == 'Product')
+        <li class="nav-item active dropdown">
+      @else
+        <li class="nav-item dropdown">
+      @endif
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product</a>
+        <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
+          <strong class="dropdown-item" style="font-width: bold; color: blue;">Complete Product</strong>
+          <a class="dropdown-item" href="{{ url('admin/manage/product/complete/insert') }}">Insert Product</a>
+          <a class="dropdown-item" href="{{ url('admin/manage/product/complete/insert') }}">Insert Custom Product</a>
+          <a class="dropdown-item" href="{{ url('admin/manage/product/complete/manage') }}">Manage Complete Product</a>
+          <hr>
+          <strong class="dropdown-item" style="font-width: bold; color: blue;">Custom Product</strong>
+          <a class="dropdown-item" href="{{ url('admin/manage/product/custom') }}">Insert Custom Product</a>
+          <a class="dropdown-item" href="{{ url('admin/manage/product/custom') }}">Manage Custom Product</a>
+        </div>
+      </li>
+
       <!-- <li class="nav-item">
         <a class="nav-link" href="{{ url('about') }}">ABOUT</a>
       </li> -->

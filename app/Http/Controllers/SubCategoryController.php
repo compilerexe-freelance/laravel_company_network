@@ -50,10 +50,13 @@ class SubCategoryController extends Controller
     public function getSubCategoryUpdate(Request $request) {
         $main_categorys = MainCategory::all();
         $categorys = Category::all();
-        $get_category = Category::find($request->id);
+        // $get_category = Category::find($request->id);
+        $get_sub_category = SubCategory::find($request->id);
+        $get_category = Category::find($get_sub_category->id_category);
+        
         $get_main_category = MainCategory::find($get_category->id_main_category);
         $sub_categorys = SubCategory::all();
-        $get_sub_category = SubCategory::find($request->id);
+        // $get_sub_category = SubCategory::find($request->id);
         return view('admin.manage_category.update_sub_category')
         ->with('main_categorys', $main_categorys)
         ->with('categorys', $categorys)

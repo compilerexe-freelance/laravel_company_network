@@ -3,20 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\MainCategory;
-use App\Category;
-use App\SubCategory;
 
 class UserController extends Controller
 {
     public function getHome() {
-        $main_categorys = MainCategory::all();
-        $categorys = Category::all();
-        $sub_categorys = SubCategory::all();
-        return view('user.home')
-        ->with('main_categorys', $main_categorys)
-        ->with('categorys', $categorys)
-        ->with('sub_categorys', $sub_categorys);
+        return view('user.home');
     }
 
     public function getFormLogin() {
@@ -39,17 +30,7 @@ class UserController extends Controller
         return view('user.contact');
     }
 
-    public function getProductDetail() {
-        return view('user.product_detail');
-    }
 
-    public function getProductType() {
-        return view('user.product_type');
-    }
-
-    public function getProductCustom() {
-        return view('user.product_custom');
-    }
 
     public function getFormQuotation() {
         return view('user.quotation_form');

@@ -1,3 +1,15 @@
+@php
+
+use App\MainCategory;
+use App\Category;
+use App\SubCategory;
+
+$main_categorys = MainCategory::all();
+$categorys = Category::all();
+$sub_categorys = SubCategory::all();
+
+@endphp
+
 <nav class="navbar navbar-dark bg-inverse" style="border-radius: 0px;">
 
   <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>

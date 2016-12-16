@@ -7,9 +7,9 @@
       <div class="card" style="border-radius: 0px;">
         <div class="card-block text-md-center">
 
-          <div class="col-md-8 offset-md-2">
+          <div class="col-md-10 offset-md-1">
             <table class="table table-bordered">
-              <thead class="thead-default">
+              <thead class="thead-inverse">
                 <tr>
                   <th class="align-middle text-md-center">No.</th>
                   <th class="align-middle text-md-center">Main Category</th>
@@ -56,7 +56,7 @@
             </table>
           </div>
 
-          <div class="col-md-8 offset-md-2">
+          <div class="col-md-10 offset-md-1" style="border: 1px solid #abc; border-radius: 5px;">
             <table class="table">
               <thead>
                 <tr>
@@ -68,6 +68,11 @@
               <tbody>
                 <form action="{{ url('admin/manage/sub_category/insert') }}" method="post">
                   {{ csrf_field() }}
+                  <tr>
+                    <td class="align-middle table-none-border"></td>
+                    <td class="table-none-border"><strong style="color: blue; font-size: 20px;">INSERT</strong></td>
+                    <td class="table-none-border"></td>
+                  </tr>
                   <tr>
                     <td class="align-middle table-none-border">Select Main Catagory</td>
                     <td class="table-none-border">

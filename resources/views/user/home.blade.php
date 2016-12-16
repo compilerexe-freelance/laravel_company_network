@@ -42,7 +42,19 @@
             <strong>Category</strong>
           </a>
           <div class="list-group-item">
-            <span>TOWER 1 CPU (E3)</span>
+            @php
+              use App\SubCategory;
+              $sub_categorys = SubCategory::all();
+            @endphp
+            @foreach ($sub_categorys as $sub_category)
+              <span>{{ $sub_category->sub_category_name }}</span>
+              <hr style="margin-top: 5px; margin-bottom: 5px;">
+              <a href="#">...</a><br>
+              <a href="#">...</a><br>
+              <a href="#">...</a><br><br>
+            @endforeach
+
+            <!-- <span>TOWER 1 CPU (E3)</span>
             <hr style="margin-top: 5px; margin-bottom: 5px;">
             <a href="#">DELL ...</a><br>
             <a href="#">DELL ...</a><br>
@@ -52,7 +64,7 @@
             <hr style="margin-top: 5px; margin-bottom: 5px;">
             <a href="#">DELL ...</a><br>
             <a href="#">DELL ...</a><br>
-            <a href="#">DELL ...</a>
+            <a href="#">DELL ...</a> -->
           </div>
         </div>
       </div>

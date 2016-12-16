@@ -1,0 +1,145 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\SubCategory;
+use App\Product;
+use App\CustomProduct;
+use Input;
+use File;
+
+class ProductController extends Controller
+{
+    public function getProductDetail() {
+        return view('user.product_detail');
+    }
+
+    public function getProductType() {
+        return view('user.product_type');
+    }
+
+    public function getProductCustom() {
+        return view('user.product_custom');
+    }
+
+    public function getManageCompleteProduct() {
+        session(['menu_active' => 'Product']);
+        $products = Product::all();
+        $custom_products = CustomProduct::all();
+        $sub_categorys = SubCategory::all();
+        return view('admin.manage_complete_product.product')
+        ->with('products', $products)
+        ->with('sub_categorys', $sub_categorys)
+        ->with('custom_products', $custom_products);
+    }
+
+    public function getCompleteProductInsert() {
+        $sub_categorys = SubCategory::all();
+        return view('admin.manage_complete_product.insert_product')
+        ->with('sub_categorys', $sub_categorys);
+    }
+
+    public function postCompleteProductInsert(Request $request) {
+        $product = new Product;
+        $product->id_sub_category = $request->id_sub_category;
+        $product->product_name = $request->product_name;
+        $product->product_detail = $request->product_complete_detail;
+        $filename = "";
+        if ($request->file('product_picture') != '') {
+            $destinationPath = 'uploads/products';
+            if (!file_exists($destinationPath)) {
+              File::makeDirectory($destinationPath, 0775);
+            }
+            $extension = Input::file('product_picture')->getClientOriginalExtension();
+            $filename = rand(111111111,999999999).'.'.$extension;
+            Input::file('product_picture')->move($destinationPath, $filename);
+            $product->product_picture = $filename;
+        }
+        $product->general_price = $request->general_price;
+        $product->product_price = $request->product_price;
+        $product->save();
+        return redirect()->route('manage_complete_product');
+    }
+
+    public function getCompleteProductUpdate(Request $request) {
+        $products = Product::all();
+        $sub_categorys = SubCategory::all();
+        $get_complete_product = Product::where('id', $request->id)->first();
+        return view('admin.manage_complete_product.update_complete_product')
+        ->with('products', $products)
+        ->with('sub_categorys', $sub_categorys)
+        ->with('get_complete_product', $get_complete_product);
+    }
+
+    public function postCompleteProductUpdate(Request $request) {
+        $product = Product::find($request->id);
+        if ($request->id_sub_category != null) {
+          $product->id_sub_category = $request->id_sub_category;
+        }
+        $product->product_name = $request->product_name;
+        $product->product_detail = $request->product_detail;
+        $filename = "";
+        if ($request->file('product_picture') != '') {
+            File::delete('uploads/products/'.$product->product_picture);
+            $destinationPath = 'uploads/products';
+            if (!file_exists($destinationPath)) {
+              File::makeDirectory($destinationPath, 0775);
+            }
+            $extension = Input::file('product_picture')->getClientOriginalExtension();
+            $filename = rand(111111111,999999999).'.'.$extension;
+            Input::file('product_picture')->move($destinationPath, $filename);
+            $product->product_picture = $filename;
+        }
+        $product->general_price = $request->general_price;
+        $product->product_price = $request->product_price;
+        $product->save();
+        return redirect()->back();
+    }
+
+    public function getCompleteProductDelete(Request $request) {
+        $product = Product::find($request->id);
+        File::delete('uploads/products/'. $product->product_picture);
+        $product->delete();
+        return redirect()->back();
+    }
+
+    public function postCustomProductInsert(Request $request) {
+        return $request->product_custom_detail;
+        // $custom_product = new CustomProduct;
+        // $get_id_product = Product::where('product_name', $request->link_product)->first();
+        // $custom_product->id_product = $get_id_product->id;
+        // $custom_product->product_name = $request->product_name;
+        // $custom_product->product_detail = $request->product_custom_detail;
+        // $filename = "";
+        // if ($request->file('product_picture') != '') {
+        //     $destinationPath = 'uploads/products';
+        //     if (!file_exists($destinationPath)) {
+        //       File::makeDirectory($destinationPath, 0775);
+        //     }
+        //     $extension = Input::file('product_picture')->getClientOriginalExtension();
+        //     $filename = rand(111111111,999999999).'.'.$extension;
+        //     Input::file('product_picture')->move($destinationPath, $filename);
+        //     $custom_product->product_picture = $filename;
+        // }
+        // $custom_product->product_price = $request->product_price;
+        // $custom_product->save();
+        // return redirect()->back();
+    }
+
+    public function getCustomProductUpdate(Request $request) {
+        // $products = Product::all();
+        // $sub_categorys = SubCategory::all();
+        // $get_complete_product = Product::where('id', $request->id)->first();
+        $custom_products = CustomProduct::all();
+        $get_custom_product = CustomProduct::find($request->id);
+        return view('admin.manage_complete_product.update_custom_product')
+        ->with('custom_products', $custom_products)
+        ->with('get_custom_product', $get_custom_product);
+    }
+
+    public function getCustomProductDelete(Request $request) {
+
+    }
+}

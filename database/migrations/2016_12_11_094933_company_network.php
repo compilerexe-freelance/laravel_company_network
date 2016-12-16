@@ -62,6 +62,7 @@ class CompanyNetwork extends Migration
 
         Schema::create('custom_product', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_product');
             $table->string('product_name');
             $table->longText('product_detail');
             $table->string('product_picture');

@@ -5,20 +5,44 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Company Network</title>
-    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('bootstrap-4-alpha-5/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url('css/bootstrap-submenu.min.css') }}">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet"> -->
 
-    <script src="https://use.fontawesome.com/35b861f9fb.js"></script>
+    <link rel="stylesheet" href="{{ url('bootstrap-4-alpha-5/css/bootstrap.min.css') }}">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+
+    <link rel="stylesheet" href="{{ url('css/bootstrap-submenu.min.css') }}">
+    <link rel="stylesheet" href="{{ url('font-awesome-4.7.0/css/font-awesome-3.0.2.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url('summernote/summernote.css') }}"> -->
+
+    <!-- <script src="https://use.fontawesome.com/35b861f9fb.js"></script> -->
     <script src="{{ url('js/jquery-3.1.1.js') }}"></script>
     <script src="{{ url('js/tether.min.js') }}"></script>
     <script src="{{ url('bootstrap-4-alpha-5/js/bootstrap.min.js') }}"></script>
     <script src="{{ url('js/bootstrap-submenu.min.js') }}"></script>
+    <!-- <script src="{{ url('summernote/summernote.min.js') }}"></script> -->
+
+    <link href="{{ url('bootstrap-wysiwyg-master/external/google-code-prettify/prettify.css') }}" rel="stylesheet">
+    <!-- <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
+    <!-- <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
+		<!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet"> -->
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
+		<script src="{{ url('bootstrap-wysiwyg-master/external/jquery.hotkeys.js') }}"></script>
+    <!-- <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script> -->
+    <script src="{{ url('bootstrap-wysiwyg-master/external/google-code-prettify/prettify.js') }}"></script>
+		<link href="{{ url('bootstrap-wysiwyg-master/index.css') }}" rel="stylesheet">
+    <script src="{{ url('bootstrap-wysiwyg-master/bootstrap-wysiwyg.js') }}"></script>
 
     <style>
-      body {
+      /*@font-face {
+        font-family: 'Kanit';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Kanit'), local('Kanit-Regular'), url("{{ url('fonts/Kanit.woff2') }}") format('woff2');
+        unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
+      }*/
+      /*body {
         font-family: 'Kanit', sans-serif;
-      }
+      }*/
 
       .table-none-border {
         border: 0px !important;

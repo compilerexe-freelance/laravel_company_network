@@ -7,9 +7,9 @@
       <div class="card" style="border-radius: 0px;">
         <div class="card-block text-md-center">
 
-          <div class="col-md-8 offset-md-2">
+          <div class="col-md-10 offset-md-1">
             <table class="table table-bordered">
-              <thead class="thead-default">
+              <thead class="thead-inverse">
                 <tr>
                   <th class="text-md-center">No.</th>
                   <th class="text-md-center">Main Category</th>
@@ -22,17 +22,17 @@
 
                 @foreach ($categorys as $category)
                   <tr>
-                    <td class="text-md-center">{{ $loop->iteration }}</td>
-                    <td class="text-md-center">
+                    <td class="align-middle text-md-center">{{ $loop->iteration }}</td>
+                    <td class="align-middle text-md-center">
                       @foreach ($main_categorys as $main_category)
                         @if ($main_category->id == $category->id_main_category)
                           {{ $main_category->main_category_name }}
                         @endif
                       @endforeach
                     </td>
-                    <td class="text-md-center">{{ $category->category_name }}</td>
-                    <td class="text-md-center"><a href="{{ url('admin/manage/category/update/'.$category->id) }}"><button type="button" name="button" class="btn btn-info" style="width: 100%;">Edit</button></a></td>
-                    <td class="text-md-center"><a href="{{ url('admin/manage/category/delete/'.$category->id) }}"><button type="button" name="button" class="btn btn-warning" style="width: 100%;">Delete</button></a></td>
+                    <td class="align-middle text-md-center">{{ $category->category_name }}</td>
+                    <td class="align-middle text-md-center"><a href="{{ url('admin/manage/category/update/'.$category->id) }}"><button type="button" name="button" class="btn btn-info" style="width: 100%;">Edit</button></a></td>
+                    <td class="align-middle text-md-center"><a href="{{ url('admin/manage/category/delete/'.$category->id) }}"><button type="button" name="button" class="btn btn-warning" style="width: 100%;">Delete</button></a></td>
                   </tr>
                 @endforeach
 
@@ -40,7 +40,7 @@
             </table>
           </div>
 
-          <div class="col-md-8 offset-md-2">
+          <div class="col-md-10 offset-md-1" style="border: 1px solid #abc; border-radius: 5px;">
             <table class="table">
               <thead>
                 <tr>
@@ -52,6 +52,11 @@
               <tbody>
                 <form action="{{ url('admin/manage/category/insert') }}" method="post">
                   {{ csrf_field() }}
+                  <tr>
+                    <td class="align-middle table-none-border"></td>
+                    <td class="table-none-border"><strong style="color: blue; font-size: 20px;">INSERT</strong></td>
+                    <td class="table-none-border"></td>
+                  </tr>
                   <tr>
                     <td class="align-middle table-none-border">Select Main Catagory</td>
                     <td class="table-none-border">
