@@ -3,58 +3,44 @@
 @section('content')
 
   <div class="row">
-    <div class="col-md">
-      <div class="card" style="border-radius: 0px;">
-        <div class="card-block text-md-center">
+    <div class="col-md-12">
+      <div class="panel panel-default" style="border-radius: 0px;">
+        <div class="panel-body text-center">
 
-          <div class="col-md-10 offset-md-1">
-            <table class="table table-bordered">
-              <thead class="thead-inverse">
-                <tr>
-                  <th class="align-middle text-md-center">No.</th>
-                  <th class="align-middle text-md-center">Main Category Name</th>
-                  <th class="align-middle text-md-center">Edit</th>
-                  <th class="align-middle text-md-center">Delete</th>
+          <div class="col-md-12">
+            <span style="color: blue; font-size: 20px; font-weight: bold;">Manage Main Category</span>
+          </div>
+
+          <div class="col-md-10 col-md-offset-1 table-responsive" style="margin-top: 20px;">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr class="active">
+                  <th>No.</th>
+                  <th>Main Category Name</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
               <tbody>
 
                 @foreach ($main_categorys as $main_category)
                   <tr>
-                    <td class="align-middle text-md-center">{{ $loop->iteration }}</td>
-                    <td class="align-middle text-md-center">{{ $main_category->main_category_name }}</td>
-                    <td class="align-middle text-md-center"><a href="{{ url('admin/manage/main_category/update/'.$main_category->id) }}"><button type="button" name="button" class="btn btn-info" style="width: 100%;">Edit</button></a></td>
-                    <td class="align-middle text-md-center"><a href="{{ url('admin/manage/main_category/delete/'.$main_category->id) }}"><button type="button" name="button" class="btn btn-warning" style="width: 100%;">Delete</button></a></td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $main_category->main_category_name }}</td>
+                    <td><a href="{{ url('admin/manage/main_category/update/'.$main_category->id) }}"><button type="button" name="button" class="btn btn-info" style="width: 100%;">Edit</button></a></td>
+                    <td><a href="{{ url('admin/manage/main_category/delete/'.$main_category->id) }}"><button type="button" name="button" class="btn btn-warning" style="width: 100%;">Delete</button></a></td>
                   </tr>
                 @endforeach
 
-              </tbody>
-            </table>
-          </div>
-
-          <div class="col-md-10 offset-md-1" style="border: 1px solid #abc; border-radius: 5px;">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th class="table-none-border"></th>
-                  <th class="table-none-border"></th>
-                  <th class="table-none-border"></th>
-                </tr>
-              </thead>
-              <tbody>
                 <form action="{{ url('admin/manage/main_category/insert') }}" method="post">
                   {{ csrf_field() }}
-                  <tr>
-                    <td class="align-middle table-none-border"></td>
-                    <td class="table-none-border"><strong style="color: blue; font-size: 20px;">INSERT</strong></td>
-                    <td class="table-none-border"></td>
-                  </tr>
-                  <tr>
-                    <td class="align-middle table-none-border">Main Category Name</td>
-                    <td class="table-none-border"><input type="text" class="form-control" name="main_category_name"></td>
-                    <td class="table-none-border"><button type="submit" class="btn btn-success" style="width: 100%;">Add</button></td>
+                  <tr class="success">
+                    <td><b>Main Category Name</b></td>
+                    <td><input type="text" class="form-control" name="main_category_name"></td>
+                    <td colspan="2"><button type="submit" class="btn btn-success" style="width: 100%;">Add</button></td>
                   </tr>
                 </form>
+
               </tbody>
             </table>
           </div>

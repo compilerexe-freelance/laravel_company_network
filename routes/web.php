@@ -32,13 +32,13 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('main_category/update/{id}', 'MainCategoryController@postMainCategoryUpdate');
     Route::get('main_category/delete/{id}', 'MainCategoryController@getMainCategoryDelete');
 
-    Route::get('category', 'CategoryController@getCategory');
+    Route::get('category', 'CategoryController@getCategory')->name('category');
     Route::post('category/insert', 'CategoryController@postCategoryInsert');
     Route::get('category/update/{id}', 'CategoryController@getCategoryUpdate');
     Route::post('category/update/{id}', 'CategoryController@postCategoryUpdate');
     Route::get('category/delete/{id}', 'CategoryController@getCategoryDelete');
 
-    Route::get('sub_category', 'SubCategoryController@getSubCategory');
+    Route::get('sub_category', 'SubCategoryController@getSubCategory')->name('sub_category');
     Route::post('ajax/id_category', 'SubCategoryController@postAjaxIdCategory');
     Route::post('ajax/category', 'SubCategoryController@postAjaxCategory');
     Route::post('sub_category/insert', 'SubCategoryController@postSubCategoryInsert');
@@ -53,8 +53,10 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('product/complete/update/{id}', 'ProductController@postCompleteProductUpdate');
     Route::get('product/complete/delete/{id}', 'ProductController@getCompleteProductDelete');
 
+    Route::get('product/complete/custom/insert', 'ProductController@getCustomProductInsert');
     Route::post('product/complete/custom/insert', 'ProductController@postCustomProductInsert');
     Route::get('product/complete/custom/update/{id}', 'ProductController@getCustomProductUpdate');
+    Route::post('product/complete/custom/update/{id}', 'ProductController@postCustomProductUpdate');
     Route::get('product/complete/custom/delete/{id}', 'ProductController@getCustomProductDelete');
   });
 

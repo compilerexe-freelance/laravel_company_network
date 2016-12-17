@@ -3,76 +3,64 @@
 @section('content')
 
   <div class="row">
-    <div class="col-md">
-      <div class="card" style="border-radius: 0px;">
-        <div class="card-block text-md-center">
+    <div class="col-md-12">
+      <div class="panel panel-default" style="border-radius: 0px;">
+        <div class="panel-body text-center">
 
-          <div class="col-md-10 offset-md-1">
+          <div class="col-md-12">
+            <span style="color: blue; font-size: 20px; font-weight: bold;">Edit Category</span>
+          </div>
+
+          <div class="col-md-10 col-md-offset-1 table-responsive" style="margin-top: 20px;">
             <table class="table table-bordered table-hover">
-              <thead class="thead-inverse">
-                <tr>
-                  <th class="text-md-center">No.</th>
-                  <th class="text-md-center">Main Category</th>
-                  <th class="text-md-center">Category Name</th>
+              <thead>
+                <tr class="active">
+                  <th>No.</th>
+                  <th>Main Category</th>
+                  <th colspan="2">Category Name</th>
                 </tr>
               </thead>
               <tbody>
 
                 @foreach ($categorys as $category)
                   <tr>
-                    <td class="text-md-center">{{ $loop->iteration }}</td>
-                    <td class="text-md-center">
+                    <td>{{ $loop->iteration }}</td>
+                    <td>
                       @foreach ($main_categorys as $main_category)
                         @if ($main_category->id == $category->id_main_category)
                           {{ $main_category->main_category_name }}
                         @endif
                       @endforeach
                     </td>
-                    <td class="text-md-center">{{ $category->category_name }}</td>
+                    <td colspan="2">{{ $category->category_name }}</td>
                   </tr>
                 @endforeach
 
-              </tbody>
-            </table>
-          </div>
-
-          <div class="col-md-10 offset-md-1">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th class="table-none-border"></th>
-                  <th class="table-none-border"></th>
-                  <th class="table-none-border"></th>
-                  <th class="table-none-border"></th>
-                </tr>
-              </thead>
-              <tbody>
                 <form action="{{ url('admin/manage/category/update/'.$get_category->id) }}" method="post">
                   {{ csrf_field() }}
-                  <tr>
-                    <td class="align-middle table-none-border" style="color: red;">Change Main Catagory</td>
-                    <td class="table-none-border">
+                  <tr class="warning">
+                    <td style="color: red; font-weight: bold;">Change Main Catagory</td>
+                    <td>
                       <select name="select_main_category" class="form-control" id="select_main_category" disabled>
                         @foreach ($main_categorys as $main_category)
                           <option value="{{ $main_category->id }}">{{ $main_category->main_category_name }}</option>
                         @endforeach
                       </select>
                     </td>
-                    <td class="table-none-border align-middle">
+                    <td colspan="2">
                       <label for="" class="form-check-inline">
                         <input type="checkbox" class="form-check-input" name="" id="enabled_change"> Enabled
                       </label>
                     </td>
-                    <td class="table-none-border align-middle"></td>
                   </tr>
-
-                  <tr>
-                    <td class="align-middle table-none-border"  style="color: red;">Change Category Name</td>
-                    <td class="table-none-border"><input type="text" class="form-control" name="category_name" value="{{ $get_category->category_name }}"></td>
-                    <td class="table-none-border"><button type="submit" class="btn btn-success" style="width: 100px;">Save</button></td>
-                    <td class="table-none-border"><a href="{{ url('admin/manage/category') }}"><button type="button" class="btn btn-warning" style="width: 100px;">Cancle</button></a></td>
+                  <tr class="warning">
+                    <td style="color: red; font-weight: bold;">Change Category Name</td>
+                    <td><input type="text" class="form-control" name="category_name" value="{{ $get_category->category_name }}"></td>
+                    <td><button type="submit" class="btn btn-success" style="width: 100%;">Save</button></td>
+                    <td><a href="{{ url('admin/manage/category') }}"><button type="button" class="btn btn-warning" style="width: 100%;">Cancle</button></a></td>
                   </tr>
                 </form>
+
               </tbody>
             </table>
           </div>

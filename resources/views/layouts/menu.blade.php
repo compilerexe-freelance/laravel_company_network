@@ -10,20 +10,27 @@ $sub_categorys = SubCategory::all();
 
 @endphp
 
-<nav class="navbar navbar-dark bg-inverse" style="border-radius: 0px;">
+<nav class="navbar navbar-inverse" style="border-radius: 0px;">
 
-  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
-  <div class="collapse navbar-toggleable-xs" id="navbar-header">
+  <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url('/') }}"><span style="color: #ffffb3;">Company</span></a>
+    </div>
 
-    <a class="navbar-brand" href="{{ url('/') }}"><span style="color: #ffffb3;">Company</span></a>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
 
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
+      <li class="active">
+        <a href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
       </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="menu-product">PRODUCT</a>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PRODUCT <span class="caret"></span></a>
 
         <ul class="dropdown-menu">
           @foreach ($main_categorys as $main_category)
@@ -104,119 +111,13 @@ $sub_categorys = SubCategory::all();
           </script>
         </ul>
 
-        <!-- <ul class="dropdown-menu">
-
-          <li class="dropdown-submenu" id="state-submenu-software">
-            <a class="dropdown-item" href="#" id="submenu-software">SOFTWARE</a>
-
-            <ul class="dropdown-menu">
-
-              <li class="dropdown-submenu" id="state-submenu-erp">
-                <a class="dropdown-item" href="#" id="submenu-erp">ERP</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">BPLUS</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown-submenu" id="state-submenu-security">
-                <a class="dropdown-item" href="#" id="submenu-security">SECURITY</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">COMMODO</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown-submenu" id="state-submenu-microsoft">
-                <a class="dropdown-item" href="#" id="submenu-microsoft">MICROSOFT</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">WINDOWS</a></li>
-                  <li><a class="dropdown-item" href="#">OFFICE</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown-submenu" id="state-submenu-virtualization">
-                <a class="dropdown-item" href="#" id="submenu-virtualization">VIRTUALIZATION</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">VMWARE</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown-submenu" id="state-submenu-hyper-converged">
-                <a class="dropdown-item" href="#" id="submenu-hyper-converged">HYPER-CONVERGED</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">VMWARE VIRTUAL SAN</a></li>
-                  <li><a class="dropdown-item" href="#">IBM</a></li>
-                  <li><a class="dropdown-item" href="#">HPE</a></li>
-                </ul>
-              </li>
-
-            </ul>
-          </li>
-
-          <li class="dropdown-submenu" id="state-submenu-hardware">
-            <a class="dropdown-item" href="#" id="submenu-hardware">HARDWARE</a>
-
-            <ul class="dropdown-menu">
-
-              <li class="dropdown-submenu" id="state-submenu-server">
-                <a class="dropdown-item" href="#" id="submenu-server">SERVER</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">TOWER</a></li>
-                  <li><a class="dropdown-item" href="#">RACK 1 U</a></li>
-                  <li><a class="dropdown-item" href="#">RACK 2 U</a></li>
-                  <li><a class="dropdown-item" href="#">HYPER-CONVERGED</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown-submenu" id="state-submenu-storage">
-                <a class="dropdown-item" href="#" id="submenu-storage">STORAGE</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">NAS</a></li>
-                  <li><a class="dropdown-item" href="#">DAS</a></li>
-                  <li><a class="dropdown-item" href="#">SAN</a></li>
-                  <li><a class="dropdown-item" href="#">BACKUP</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown-submenu" id="state-submenu-network">
-                <a class="dropdown-item" href="#" id="submenu-network">NETWORK</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">FORTIGATE</a></li>
-                  <li><a class="dropdown-item" href="#">ZYXEL</a></li>
-                  <li><a class="dropdown-item" href="#">KORUGAN</a></li>
-                  <li><a class="dropdown-item" href="#">MIKROTIC</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown-submenu" id="state-submenu-workstation">
-                <a class="dropdown-item" href="#" id="submenu-workstation">WORKSTATION</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">DELL</a></li>
-                  <li><a class="dropdown-item" href="#">LENOVO</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown-submenu" id="state-submenu-other">
-                <a class="dropdown-item" href="#" id="submenu-other">OTHER</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">ACCESS CONTROL</a></li>
-                  <li><a class="dropdown-item" href="#">TIME ATTENDANCE</a></li>
-                  <li><a class="dropdown-item" href="#">CC TV</a></li>
-                  <li><a class="dropdown-item" href="#">PRINTER</a></li>
-                  <li><a class="dropdown-item" href="#">ACCESSORIES</a></li>
-                </ul>
-              </li>
-
-            </ul>
-          </li>
-
-        </ul>  -->
         <!-- end product menu-->
       </li>
 
       <!-- SOLUTION -->
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="menu-solution">SOLUTION</a>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SOLUTION <span class="caret"></span></a>
 
         <ul class="dropdown-menu">
 
@@ -255,44 +156,46 @@ $sub_categorys = SubCategory::all();
 
       <!-- END SOLUTION -->
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('about') }}">ABOUT</a>
+      <li>
+        <a href="{{ url('about') }}">ABOUT</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('news') }}">NEWS</a>
+      <li>
+        <a href="{{ url('news') }}">NEWS</a>
       </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DOWNLOADS</a>
-        <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
-          <a class="dropdown-item" href="#">SOFTWARE</a>
-          <a class="dropdown-item" href="#">SALES KID</a>
-          <a class="dropdown-item" href="#">MANUAL</a>
-          <a class="dropdown-item" href="#">KNOWLEDGE</a>
-          <a class="dropdown-item" href="#">FORM</a>
-          <a class="dropdown-item" href="#">OTHER</a>
-        </div>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DOWNLOADS <span class="caret"></span></a>
+        <ul class="dropdown-menu" aria-labelledby="supportedContentDropdown">
+          <li><a href="#">SOFTWARE</a></li>
+          <li><a href="#">SALES KID</a></li>
+          <li><a href="#">MANUAL</a></li>
+          <li><a href="#">KNOWLEDGE</a></li>
+          <li><a href="#">FORM</a></li>
+          <li><a href="#">OTHER</a></li>
+        </ul>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="#">HOW TO BUY</a>
+      <li>
+        <a href="#">HOW TO BUY</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('quotation/upload') }}">UPLOAD_QUOTATION</a>
+      <li>
+        <a href="{{ url('quotation/upload') }}">UPLOAD_QUOTATION</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('contact') }}">CONTACT</a>
+      <li>
+        <a href="{{ url('contact') }}">CONTACT</a>
       </li>
 
     </ul>
+  </div>
 
   </div>
 </nav>
 
 <script>
+/*
   $(document).ready(function() {
 
     // software
@@ -421,4 +324,5 @@ $sub_categorys = SubCategory::all();
     });
 
   });
+  */
 </script>
