@@ -21,6 +21,7 @@ class CategoryController extends Controller
         $category = new Category;
         $category->id_main_category = $request->select_main_category;
         $category->category_name = $request->category_name;
+        $category->filter_category = $request->filter_category;
         $category->save();
         return redirect()->back();
     }
@@ -41,6 +42,9 @@ class CategoryController extends Controller
             $category->id_main_category = $request->select_main_category;
         }
         $category->category_name = $request->category_name;
+        if ($request->filter_category != null) {
+          $category->filter_category = $request->filter_category;
+        }
         $category->save();
         return redirect()->route('category');
     }

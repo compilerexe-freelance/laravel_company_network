@@ -45,7 +45,7 @@ $sub_categorys = SubCategory::all();
                       <ul class="dropdown-menu">
                         @foreach ($sub_categorys as $sub_category)
                           @if ($sub_category->id_category == $category->id)
-                            <li><a class="dropdown-item" href="#">{{ $sub_category->sub_category_name }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url('product/category/'.$sub_category->id) }}">{{ $sub_category->sub_category_name }}</a></li>
                           @endif
                         @endforeach
                       </ul>

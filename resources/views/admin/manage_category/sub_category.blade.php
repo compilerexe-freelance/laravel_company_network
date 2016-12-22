@@ -58,7 +58,7 @@
 
                 <form action="{{ url('admin/manage/sub_category/insert') }}" method="post">
                   {{ csrf_field() }}
-                  <tr class="warning">
+                  <tr class="success">
                     <td colspan="2"><b>Select Main Catagory</b></td>
                     <td colspan="2">
                       <select name="select_main_category" id="select_main_category" class="form-control">
@@ -69,13 +69,13 @@
                     </td>
                     <td colspan="2"></td>
                   </tr>
-                  <tr class="warning">
+                  <tr class="success">
                     <td colspan="2"><b>Select Catagory</b></td>
                     <td colspan="2">
                       <select name="select_category" id="select_category" class="form-control"></select></td>
                     <td colspan="2"></td>
                   </tr>
-                  <tr class="warning">
+                  <tr class="success">
                     <td colspan="2"><b>Sub Category Name</b></td>
                     <td colspan="2"><input type="text" class="form-control" name="sub_category_name"></td>
                     <td colspan="2"><button type="submit" class="btn btn-success" style="width: 100%;">Add</button></td>

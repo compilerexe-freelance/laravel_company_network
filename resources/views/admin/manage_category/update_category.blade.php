@@ -49,10 +49,26 @@
                     </td>
                     <td colspan="2">
                       <label for="" class="form-check-inline">
-                        <input type="checkbox" class="form-check-input" name="" id="enabled_change"> Enabled
+                        <input type="checkbox" class="form-check-input" name="" id="enabled_change_main_category"> Enabled
                       </label>
                     </td>
                   </tr>
+
+                  <tr class="warning">
+                    <td style="color: red; font-weight: bold;">Filter Category</td>
+                    <td>
+                      <select name="filter_category" id="filter_category" class="form-control" disabled>
+                        <option value="1">Complete</option>
+                        <option value="0">Custom</option>
+                      </select>
+                    </td>
+                    <td colspan="2">
+                      <label for="" class="form-check-inline">
+                        <input type="checkbox" class="form-check-input" name="" id="enabled_change_filter_category"> Enabled
+                      </label>
+                    </td>
+                  </tr>
+
                   <tr class="warning">
                     <td style="color: red; font-weight: bold;">Change Category Name</td>
                     <td><input type="text" class="form-control" name="category_name" value="{{ $get_category->category_name }}"></td>
@@ -72,12 +88,22 @@
 
   <script>
     $(document).ready(function() {
-      $('#enabled_change').on('change', function() {
+      $('#enabled_change_main_category').on('change', function() {
 
         if ($(this).is(':checked')) {
           $('#select_main_category').prop('disabled', false);
         } else {
           $('#select_main_category').prop('disabled', true);
+        }
+
+      });
+
+      $('#enabled_change_filter_category').on('change', function() {
+
+        if ($(this).is(':checked')) {
+          $('#filter_category').prop('disabled', false);
+        } else {
+          $('#filter_category').prop('disabled', true);
         }
 
       });

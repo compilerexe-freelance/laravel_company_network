@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> -->
     <title>Company Network</title>
     <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ url('bootstrap-4-alpha-5/css/bootstrap.min.css') }}"> -->

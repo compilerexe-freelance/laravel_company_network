@@ -24,8 +24,10 @@
                             </tr>
 
                             <!-- start type complete -->
-                            <form id="type_complete_form" action="{{ url('admin/manage/product/complete/update/'.$get_complete_product->id) }}" method="post" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+
+                                <form id="type_complete_form" action="{{ url('admin/manage/product/complete/update/'.$get_complete_product->id) }}" method="post" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+
                                 <tr id="type_complete">
 
                                     <td class="text-right table-none-border">Sub Category</td>
@@ -112,6 +114,15 @@
 
 <script>
     $(document).ready(function() {
+
+        $('#enabled_change_filter_product').on('change', function() {
+            if ($(this).is(':checked')) {
+                $('#filter_product').prop('disabled', false);
+            } else {
+                $('#filter_product').prop('disabled', true);
+            }
+        });
+
         $('#enabled_change_sub_category').on('change', function() {
             if ($(this).is(':checked')) {
                 $('#id_sub_category').prop('disabled', false);

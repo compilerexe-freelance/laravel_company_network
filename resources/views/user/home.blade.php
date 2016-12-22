@@ -92,7 +92,33 @@
 
                 <div class="panel-body">
 
-                    <div class="col-md-12">
+                    @foreach ($products as $product)
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <span style="font-size: 18px;">{{ $product->product_name }}</span>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <a href="{{ url('product/detail') }}">
+                              <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive">
+                          </a>
+                      </div>
+                      <div class="col-md-8">
+                          {!! $product->product_detail !!}
+
+                          <a href="{{ url('quotation/form/'.$product->id) }}">
+                            <button type="button" class="btn btn-success float-md-right" style="margin-top: 20px;">
+                              <i class="fa fa-shopping-cart fa-lg"></i> สร้างใบเสนอราคา
+                            </button>
+                          </a>
+
+                      </div>
+                      <div class="col-md-12">
+                          <hr>
+                      </div>
+                    @endforeach
+
+                    <!-- <div class="col-md-12">
                         <div class="form-group">
                             <a href="{{ url('product/detail') }}"><span style="font-size: 18px;">HPE ProLiant ML10 Gen9 [P/N 845678-375]</span></a>
                         </div>
@@ -134,29 +160,7 @@
                     </div>
                     <div class="col-md-12">
                         <hr>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <a href="{{ url('product/detail') }}"><span style="font-size: 18px;">HPE ProLiant ML10 Gen9 [P/N 845678-375]</span></a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="{{ url('product/detail') }}">
-                            <img src="https://www.2beshop.com/images/products/HPE%20ProLiant%20ML10%20Gen9.jpg" alt="" class="img-responsive">
-                        </a>
-                    </div>
-                    <div class="col-md-8">
-                        Intel Xeon E3-1225v5 (3.3GHz/4-core/8MB/80W) Processor<br> 8GB (1x8GB DDR-4 UDIMMs, 2133 MHz)<br> 4 Disk Bay LFF None Hot Plug SATA (Upgradeability : Up to 6LFF Non-hot plug SATA 3.5" drives : Optional)<br> Intel Ethernet Connection
-                        I219-LM (1x1GbE)<br> Intel RST SATA RAID Controller (Support RAID 0/1/10, 5)<br> SATA DVD-RW<br> HP 300W Multi-Output Non-Hot Plug, Non redundant Power Supply<br> Intel Active Management Technology (Intel AMT 11.0)<br> No VGA Port!!
-                        (2 x Display Port)<br> 3-year NBD ML10 H/W On-site Support Warranty by HPE<br>
-
-                        <button type="button" class="btn btn-success float-md-right" style="margin-top: 20px;"><i class="fa fa-shopping-cart fa-lg"></i> สร้างใบเสนอราคา</button>
-
-                    </div>
-                    <div class="col-md-12">
-                        <hr>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

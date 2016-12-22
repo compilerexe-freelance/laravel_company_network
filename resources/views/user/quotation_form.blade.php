@@ -1,4 +1,13 @@
 @extends('layouts.header') @section('content')
+
+<script>
+  var sum = {{ $product->product_price }};
+  var vat = @php echo 0.07 * $product->product_price; @endphp;
+  var inc_vat = sum + vat;
+
+  var extension = [];
+</script>
+
 <div class="container">
     <div class="row">
 
@@ -10,11 +19,11 @@
 
                     <div class="col-md-10 col-md-offset-1 text-center">
                         <div class="form-group">
-                            <a href="#"><span style="font-size: 18px;">HPE ProLiant ML10 Gen9 [P/N 845678-375]</span></a>
+                          <span style="font-size: 20px; color: blue;">{{ $product->product_name }}</span>
                         </div>
                     </div>
                     <div class="col-md-10 col-md-offset-1 text-center">
-                        <img src="https://www.2beshop.com/images/products/HPE%20ProLiant%20ML10%20Gen9.jpg" alt="" class="img-fluid">
+                        <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive" style="margin: auto;">
                     </div>
 
                     <div class="col-md-4 col-md-offset-4 text-center">
@@ -30,17 +39,31 @@
                                 <tbody>
                                     <tr class="table-none-border">
                                         <td class="table-none-border">SUM</td>
-                                        <td class="table-none-border">20,000</td>
+                                        <td class="table-none-border"><span id="sum">{{ number_format($product->product_price,2) }}</span></td>
                                         <td class="table-none-border">บาท</td>
                                     </tr>
                                     <tr class="table-none-border">
                                         <td class="table-none-border">VAT</td>
-                                        <td class="table-none-border">5,000</td>
+                                        <td class="table-none-border">
+                                          <span id="vat">
+                                            @php
+                                              $vat = 0.07 * $product->product_price;
+                                              echo number_format($vat, 2);
+                                            @endphp
+                                          </span>
+                                        </td>
                                         <td class="table-none-border">บาท</td>
                                     </tr>
                                     <tr class="table-none-border">
                                         <td class="table-none-border">INC VAT</td>
-                                        <td class="table-none-border">25,000</td>
+                                        <td class="table-none-border">
+                                          <span id="inc_vat">
+                                            @php
+                                              $inc_vat = $product->product_price + $vat;
+                                              echo number_format($inc_vat, 2);
+                                            @endphp
+                                          </span>
+                                        </td>
                                         <td class="table-none-border">บาท</td>
                                     </tr>
                                 </tbody>
@@ -49,7 +72,7 @@
                     </div>
 
                     <div class="col-md-10 col-md-offset-1 text-center">
-                        <div class="form-group">
+                        <div class="form-group table-responsive">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -61,32 +84,71 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><img src="https://www.2beshop.com/images/products/HPE%20ProLiant%20ML10%20Gen9.jpg" alt="" style="width: 100px; height: 90px;"></td>
-                                        <td>[845678-375] HPE ProLiant ML10 Gen9 Intel Xeon E3-1225v5 (3.3GHz/4-core/8MB/80W) Proce</td>
-                                        <td>+ 17,500 Baht</td>
-                                        <td><button type="button" class="btn btn-success" style="width: 100px;">Add</button></td>
-                                        <td><button type="button" class="btn btn-warning" style="width: 100px;">Remove</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="http://i.ebayimg.com/00/s/MzAyWDY4Nw==/z/yvYAAOxyVaBS-Ome/$_32.JPG" alt="" style="width: 100px; height: 90px;"></td>
-                                        <td>[805667-B21] HPE 4GB 1Rx8 PC4-2133P-E-15 STND Kit</td>
-                                        <td>+ 7,500 Baht</td>
-                                        <td><button type="button" class="btn btn-success" style="width: 100px;">Add</button></td>
-                                        <td><button type="button" class="btn btn-warning" style="width: 100px;">Remove</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="http://www.partsinthebox.com/media/catalog/product/cache/1/small_image/300x300/9df78eab33525d08d6e5fb8d27136e95/_/3/_3_2_5.jpg" alt="" style="width: 100px; height: 90px;"></td>
-                                        <td>[843266-B21] HPE 1TB 6G SATA 7.2K 3.5in NHP ETY HDD</td>
-                                        <td>+ 5,000 Baht</td>
-                                        <td><button type="button" class="btn btn-success" style="width: 100px;">Add</button></td>
-                                        <td><button type="button" class="btn btn-warning" style="width: 100px;">Remove</button></td>
-                                    </tr>
+                                    @foreach ($custom_products as $custom_product)
+                                      <tr>
+                                        <td><img src="{{ url('uploads/products/'.$custom_product->product_picture) }}" alt="" class="img-responsive"></td>
+                                        <td>{{ $custom_product->product_name }}</td>
+                                        <td>+{{ number_format($custom_product->product_price) }} Baht</td>
+                                        <td><button type="button" id="btn_add_{{ $custom_product->id }}" class="btn btn-success" style="width: 100px;">Add</button></td>
+                                        <td><button type="button" id="btn_remove_{{ $custom_product->id }}" class="btn btn-warning" style="width: 100px;">Remove</button></td>
+                                      </tr>
+
+                                      <script>
+                                        $(document).ready(function() {
+                                          $('#btn_add_{{ $custom_product->id }}').on('click', function() {
+                                            sum = sum + {{ $custom_product->product_price }};
+                                            vat = 0.07 * sum;
+                                            inc_vat = sum + vat;
+                                            $(this).prop('disabled', true);
+                                            $('#sum').text(sum.toFixed(0).replace(/(\d)(?=(\d{3})+$)/g, "$1,"));
+                                            $('#vat').text(vat.toFixed(2));
+                                            $('#inc_vat').text(inc_vat.toFixed(2));
+                                            $('#input_sum').val(sum);
+                                            $('#input_vat').val(vat);
+                                            $('#input_inc_vat').val(inc_vat);
+
+                                            extension.push('{{ $custom_product->id }}');
+                                            sessionStorage.setItem('extension', JSON.stringify(extension));
+                                            $('#extension').val(sessionStorage.getItem('extension'));
+                                            // console.log(sessionStorage.getItem('extension'));
+                                            // console.log(sum);
+                                          });
+                                          $('#btn_remove_{{ $custom_product->id }}').on('click', function() {
+                                            if ($('#btn_add_{{ $custom_product->id }}').prop('disabled')) {
+                                              sum = sum - {{ $custom_product->product_price }};
+                                              vat = 0.07 * sum;
+                                              inc_vat = sum + vat;
+                                              $('#btn_add_{{ $custom_product->id }}').prop('disabled', false);
+                                              $('#sum').text(sum.toFixed(0).replace(/(\d)(?=(\d{3})+$)/g, "$1,"));
+                                              $('#vat').text(vat.toFixed(2));
+                                              $('#inc_vat').text(inc_vat.toFixed(2));
+                                              $('#input_sum').val(sum);
+                                              $('#input_vat').val(vat);
+                                              $('#input_inc_vat').val(inc_vat);
+
+                                              var index = extension.indexOf('{{ $custom_product->id }}');
+                                              extension.splice(index, 1);
+                                              sessionStorage.setItem('extension', JSON.stringify(extension));
+                                              $('#extension').val(sessionStorage.getItem('extension'));
+                                              // console.log(sessionStorage.getItem('extension'));
+                                            }
+                                          });
+                                        });
+                                      </script>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
 
-                        <a href="{{ url('quotation/create') }}"><button type="button" class="btn btn-success" style="//margin-top: 20px;"><i class="fa fa-shopping-cart fa-lg"></i> สร้างใบเสนอราคา</button></a>
+                        <!-- <a href="{{ url('quotation/create') }}"><button type="button" class="btn btn-success" style="//margin-top: 20px;"><i class="fa fa-shopping-cart fa-lg"></i> สร้างใบเสนอราคา</button></a> -->
+                        <form action="{{ url('quotation/create') }}" method="post">
+                          {{ csrf_field() }}
+                          <input type="text" name="input_sum" id="input_sum" hidden>
+                          <input type="text" name="input_vat" id="input_vat" hidden>
+                          <input type="text" name="input_inc_vat" id="input_inc_vat" hidden>
+                          <input type="text" name="extension" id="extension" hidden>
+                          <button type="submit" class="btn btn-success" style="//margin-top: 20px;"><i class="fa fa-shopping-cart fa-lg"></i> สร้างใบเสนอราคา</button>
+                        </form>
                     </div>
 
                 </div>
@@ -96,5 +158,13 @@
 
     </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('#input_sum').val(sum);
+    $('#input_vat').val(vat);
+    $('#input_inc_vat').val(inc_vat);
+  });
+</script>
 
 @endsection

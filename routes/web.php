@@ -46,32 +46,43 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('sub_category/update/{id}', 'SubCategoryController@postSubCategoryUpdate');
     Route::get('sub_category/delete/{id}', 'SubCategoryController@getSubCategoryDelete');
 
-    Route::get('product/complete/manage', 'ProductController@getManageCompleteProduct')->name('manage_complete_product');
-    Route::get('product/complete/insert', 'ProductController@getCompleteProductInsert');
-    Route::post('product/complete/insert', 'ProductController@postCompleteProductInsert');
-    Route::get('product/complete/update/{id}', 'ProductController@getCompleteProductUpdate');
-    Route::post('product/complete/update/{id}', 'ProductController@postCompleteProductUpdate');
-    Route::get('product/complete/delete/{id}', 'ProductController@getCompleteProductDelete');
+    /* Manage Complete Product */
+    // Complete Product
+    Route::get('product/complete/manage', 'CompleteProductController@getManageCompleteProduct')->name('manage_complete_product');
+    Route::get('product/complete/insert', 'CompleteProductController@getCompleteProductInsert');
+    Route::post('product/complete/insert', 'CompleteProductController@postCompleteProductInsert');
+    Route::get('product/complete/update/{id}', 'CompleteProductController@getCompleteProductUpdate');
+    Route::post('product/complete/update/{id}', 'CompleteProductController@postCompleteProductUpdate');
+    Route::get('product/complete/delete/{id}', 'CompleteProductController@getCompleteProductDelete');
+    // Custom Product
+    Route::get('product/complete/custom/insert', 'CompleteProductController@getCustomProductInsert');
+    Route::post('product/complete/custom/insert', 'CompleteProductController@postCustomProductInsert');
+    Route::get('product/complete/custom/update/{id}', 'CompleteProductController@getCustomProductUpdate');
+    Route::post('product/complete/custom/update/{id}', 'CompleteProductController@postCustomProductUpdate');
+    Route::get('product/complete/custom/delete/{id}', 'CompleteProductController@getCustomProductDelete');
+    /* End Manage Complete Product */
 
-    Route::get('product/complete/custom/insert', 'ProductController@getCustomProductInsert');
-    Route::post('product/complete/custom/insert', 'ProductController@postCustomProductInsert');
-    Route::get('product/complete/custom/update/{id}', 'ProductController@getCustomProductUpdate');
-    Route::post('product/complete/custom/update/{id}', 'ProductController@postCustomProductUpdate');
-    Route::get('product/complete/custom/delete/{id}', 'ProductController@getCustomProductDelete');
+    /* Manage Custom Product */
+    Route::get('product/custom/insert', 'CustomProductController@getCustomProductInsert');
+    /* End Manage Custom Product */
+
   });
 
 
 });
 
 Route::group(['prefix' => 'product'], function() {
-  Route::get('detail', 'ProductController@getProductDetail');
-  Route::get('type', 'ProductController@getProductType');
-  Route::get('custom', 'ProductController@getProductCustom');
+  Route::get('category/{id}', 'UserController@getSubCategoryProduct');
+  Route::get('detail', 'UserController@getProductDetail');
+  Route::get('type', 'UserController@getProductType');
+  Route::any('select', 'UserController@getProductSelect');
+  Route::get('complete', 'UserController@getProductComplete');
 });
 
 Route::group(['prefix' => 'quotation'], function() {
-  Route::get('form', 'UserController@getFormQuotation');
-  Route::get('create', 'UserController@getGuestQuotation');
+  Route::any('form/{id}', 'UserController@anyFormQuotation');
+  Route::post('create', 'UserController@postGuestQuotation');
+  Route::post('print', 'UserController@postPrintQuotation');
   Route::get('member/create', 'UserController@getMemberQuotation');
   Route::get('upload', 'UserController@getFormUploadQuotation');
 });

@@ -24,7 +24,9 @@
                 @foreach ($products as $product)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>complete</td>
+                    <td>
+                      COMPLETE
+                    </td>
                     <td>
                       @php
                         $sub_category = App\SubCategory::find($product->id_sub_category);
@@ -56,7 +58,7 @@
                 @foreach ($custom_products as $custom_product)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>custom</td>
+                    <td>CUSTOM</td>
                     <td>
                       @php
                         $product = App\Product::find($custom_product->id_product);

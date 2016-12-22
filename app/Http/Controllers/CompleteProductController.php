@@ -10,19 +10,8 @@ use App\CustomProduct;
 use Input;
 use File;
 
-class ProductController extends Controller
+class CompleteProductController extends Controller
 {
-    public function getProductDetail() {
-        return view('user.product_detail');
-    }
-
-    public function getProductType() {
-        return view('user.product_type');
-    }
-
-    public function getProductCustom() {
-        return view('user.product_custom');
-    }
 
     public function getManageCompleteProduct() {
         session(['menu_active' => 'Product']);
@@ -36,6 +25,7 @@ class ProductController extends Controller
     }
 
     public function getCompleteProductInsert() {
+        session(['menu_active' => 'Product']);
         $sub_categorys = SubCategory::all();
         return view('admin.manage_complete_product.insert_product')
         ->with('sub_categorys', $sub_categorys);
@@ -76,7 +66,7 @@ class ProductController extends Controller
     public function postCompleteProductUpdate(Request $request) {
         $product = Product::find($request->id);
         if ($request->id_sub_category != null) {
-          $product->id_sub_category = $request->id_sub_category;
+            $product->id_sub_category = $request->id_sub_category;
         }
         $product->product_name = $request->product_name;
         $product->product_detail = $request->product_detail;
@@ -106,6 +96,7 @@ class ProductController extends Controller
     }
 
     public function getCustomProductInsert() {
+      session(['menu_active' => 'Product']);
       return view('admin.manage_complete_product.insert_custom_product');
     }
 

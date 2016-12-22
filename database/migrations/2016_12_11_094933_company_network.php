@@ -39,6 +39,7 @@ class CompanyNetwork extends Migration
             $table->increments('id');
             $table->integer('id_main_category');
             $table->string('category_name');
+            $table->tinyInteger('filter_category');
             $table->timestamps();
         });
 
@@ -69,6 +70,13 @@ class CompanyNetwork extends Migration
             $table->integer('product_price');
             $table->timestamps();
         });
+
+        // Schema::create('filter_product', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->integer('id_product');
+        //     $table->tinyInteger('filter_product');
+        //     $table->timestamps();
+        // });
 
         Schema::create('promote', function (Blueprint $table) {
             $table->increments('id');

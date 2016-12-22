@@ -55,10 +55,10 @@
             <li><a href="{{ url('admin/manage/product/complete/insert') }}">Insert Product</a></li>
             <li><a href="{{ url('admin/manage/product/complete/custom/insert') }}">Insert Custom Product</a></li>
             <li><a href="{{ url('admin/manage/product/complete/manage') }}">Manage Complete Product</a></li>
-            <li role="separator" class="divider"></li>
+            <!-- <li role="separator" class="divider"></li>
             <li><a href="#" style="font-weight: bold; color: blue;">Custom Product</a></li>
-            <li><a href="{{ url('admin/manage/product/custom') }}">Insert Custom Product</a></li>
-            <li><a href="{{ url('admin/manage/product/custom') }}">Manage Custom Product</a></li>
+            <li><a href="{{ url('admin/manage/product/custom/insert') }}">Insert Custom Product</a></li>
+            <li><a href="{{ url('admin/manage/product/custom/manage') }}">Manage Custom Product</a></li> -->
           </ul>
         </li>
 

@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         //
 
         /*
@@ -226,6 +226,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
 
     ],
 

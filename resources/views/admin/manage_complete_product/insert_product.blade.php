@@ -24,8 +24,6 @@
                   </td>
                 </tr>
 
-                  <!-- start type complete -->
-
                   <tr>
                     <form action="{{ url('admin/manage/product/complete/insert') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}

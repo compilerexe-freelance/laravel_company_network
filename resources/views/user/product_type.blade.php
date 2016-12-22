@@ -18,18 +18,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-md-center"><input type="radio" name="product_type" checked></td>
-                                        <td>สินค้าสำเร็จรูป</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-md-center"><input type="radio" name="product_type"></td>
-                                        <td>สินค้าประกอบเอง</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><button type="button" class="btn btn-success" style="width: 100%;">ถัดไป <i class="fa fa-angle-right"></i></button></td>
-                                    </tr>
+
+                                    <form action="{{ url('product/select') }}" method="post">
+                                      {{ csrf_field() }}
+                                      <tr>
+                                          <td class="text-md-center"><input type="radio" name="product_type" value="complete" checked></td>
+                                          <td>สินค้าสำเร็จรูป</td>
+                                      </tr>
+                                      <tr>
+                                          <td class="text-md-center"><input type="radio" name="product_type" value="custom"></td>
+                                          <td>สินค้าประกอบเอง</td>
+                                      </tr>
+                                      <tr>
+                                          <td></td>
+                                          <td><button type="submit" class="btn btn-success" style="width: 100%;">ถัดไป <i class="fa fa-angle-right"></i></button></td>
+                                      </tr>
+                                    </form>
+
                                 </tbody>
                             </table>
                         </div>
