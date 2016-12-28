@@ -26,6 +26,16 @@
                         <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive" style="margin: auto;">
                     </div>
 
+                    <div class="col-md-10 col-md-offset-2">
+                      <div class="form-group">
+                        {!! $product->product_detail !!}
+                      </div>
+                    </div>
+
+                    <div class="col-md-10 col-md-offset-1">
+                      <hr>
+                    </div>
+
                     <div class="col-md-4 col-md-offset-4 text-center">
                         <div class="form-group">
                             <table class="table">

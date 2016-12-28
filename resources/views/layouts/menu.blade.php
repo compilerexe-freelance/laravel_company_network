@@ -33,7 +33,12 @@ $sub_categorys = SubCategory::all();
         <a href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
       </li>
 
-      <li class="dropdown">
+      @if (session()->get('menu_active') == 'Product')
+        <li class="dropdown active">
+      @else
+        <li class="dropdown">
+      @endif
+      <!-- <li class="dropdown"> -->
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PRODUCT <span class="caret"></span></a>
 
         <ul class="dropdown-menu">

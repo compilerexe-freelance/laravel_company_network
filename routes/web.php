@@ -15,7 +15,7 @@ Route::post('verify_login', 'VerifyAdmin@postVerfiry');
 Route::get('/', 'UserController@getHome')->name('home');
 Route::get('about', 'UserController@getAbout');
 Route::get('news', 'UserController@getNews');
-Route::get('news/read', 'UserController@getReadNews');
+Route::get('news/read/{id}', 'UserController@getReadNews');
 Route::get('contact', 'UserController@getContact');
 
 Route::group(['prefix' => 'user'], function() {
@@ -44,7 +44,7 @@ Route::group(['middleware' => ['VerifyAdmin']], function() {
       Route::get('category/delete/{id}', 'CategoryController@getCategoryDelete');
 
       Route::get('sub_category', 'SubCategoryController@getSubCategory')->name('sub_category');
-      Route::post('ajax/id_category', 'SubCategoryController@postAjaxIdCategory');
+      Route::post('ajax/category_id', 'SubCategoryController@postAjaxIdCategory');
       Route::post('ajax/category', 'SubCategoryController@postAjaxCategory');
       Route::post('sub_category/insert', 'SubCategoryController@postSubCategoryInsert');
       Route::get('sub_category/update/{id}', 'SubCategoryController@getSubCategoryUpdate');
@@ -74,7 +74,13 @@ Route::group(['middleware' => ['VerifyAdmin']], function() {
     }); // End Group Manage
 
     Route::group(['prefix' => 'content'], function() {
-
+      Route::get('pr_promotion', 'PromoteController@getManagePromote')->name('manage_promote');
+      Route::get('pr_promotion/view/{id}', 'PromoteController@getViewPromote');
+      Route::get('pr_promotion/create', 'PromoteController@getCreatePromote');
+      Route::post('pr_promotion/create', 'PromoteController@postCreatePromote');
+      Route::get('pr_promotion/edit/{id}', 'PromoteController@getEditPromote');
+      Route::post('pr_promotion/edit/{id}', 'PromoteController@postEditPromote');
+      Route::get('pr_promotion/delete/{id}', 'PromoteController@getDeletePromote');
     });
 
     Route::group(['prefix' => 'change/ui'], function() {

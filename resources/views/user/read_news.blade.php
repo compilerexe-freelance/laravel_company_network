@@ -61,10 +61,10 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong style="font-size: 18px;">หัวข้อ ข่าวสาร / โปรโมชั่น</strong>
+                    <strong style="font-size: 18px;">{{ $promote->promote_title }}</strong>
                 </div>
                 <div class="panel-body">
-                    รายละเอียด ...
+                    {!! $promote->promote_detail !!}
                 </div>
             </div>
 

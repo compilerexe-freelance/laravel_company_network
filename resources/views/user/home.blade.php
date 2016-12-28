@@ -80,11 +80,14 @@
             <div class="form-group">
                 <div class="list-group">
                     <li class="list-group-item" style="background-color: #f2f2f2;"><strong style="font-size: 18px; //color: white;"><i class="fa fa-feed"></i> ข่าวสาร / โปรโมชั่น</strong></li>
-                    <li class="list-group-item"><a href="{{ url('news/read') }}">ข่าวสาร ...</a></li>
+                    @foreach ($promotes as $promote)
+                      <li class="list-group-item"><a href="{{ url('news/read/'.$promote->id) }}">{{ $promote->promote_title }}</a></li>
+                    @endforeach
+                    <!-- <li class="list-group-item"><a href="{{ url('news/read') }}">ข่าวสาร ...</a></li>
                     <li class="list-group-item"><a href="{{ url('news/read') }}">ข่าวสาร ...</a></li>
                     <li class="list-group-item"><a href="{{ url('news/read') }}">ข่าวสาร ...</a></li>
                     <li class="list-group-item"><a href="{{ url('news/read') }}">โปรโมชั่น ...</a></li>
-                    <li class="list-group-item"><a href="{{ url('news/read') }}">โปรโมชั่น ...</a></li>
+                    <li class="list-group-item"><a href="{{ url('news/read') }}">โปรโมชั่น ...</a></li> -->
                 </div>
             </div>
 
@@ -99,18 +102,20 @@
                           </div>
                       </div>
                       <div class="col-md-4">
-                          <a href="{{ url('product/detail') }}">
+                          <!-- <a href="{{ url('product/detail') }}"> -->
                               <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive">
-                          </a>
+                          <!-- </a> -->
                       </div>
                       <div class="col-md-8">
                           {!! $product->product_detail !!}
 
-                          <a href="{{ url('quotation/form/'.$product->id) }}">
-                            <button type="button" class="btn btn-success float-md-right" style="margin-top: 20px;">
-                              <i class="fa fa-shopping-cart fa-lg"></i> สร้างใบเสนอราคา
-                            </button>
-                          </a>
+                          <div class="text-right">
+                            <a href="{{ url('quotation/form/'.$product->id) }}">
+                              <button type="button" class="btn btn-success" style="margin-top: 20px;">
+                                <i class="fa fa-shopping-cart fa-lg"></i> สร้างใบเสนอราคา
+                              </button>
+                            </a>
+                          </div>
 
                       </div>
                       <div class="col-md-12">

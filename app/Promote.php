@@ -9,6 +9,7 @@ class Promote extends Model
     protected $table = 'promote';
 
     protected $fillable = [
+      'promote_title',
       'promote_detail'
     ];
 }

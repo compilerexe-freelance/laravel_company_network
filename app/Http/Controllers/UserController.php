@@ -8,6 +8,7 @@ use App\Category;
 use App\SubCategory;
 use App\Product;
 use App\CustomProduct;
+use App\Promote;
 use PDF;
 
 class UserController extends Controller
@@ -15,8 +16,10 @@ class UserController extends Controller
     public function getHome() {
         session(['menu_active' => 'Home']);
         $products = Product::latest()->get();
+        $promotes = Promote::all();
         return view('user.home')
-        ->with('products', $products);
+        ->with('products', $products)
+        ->with('promotes', $promotes);
     }
 
     public function getFormLogin() {
@@ -29,11 +32,15 @@ class UserController extends Controller
 
     public function getNews() {
         session(['menu_active' => 'News']);
-        return view('user.news');
+        $promotes = Promote::all();
+        return view('user.news')
+        ->with('promotes', $promotes);
     }
 
-    public function getReadNews() {
-        return view('user.read_news');
+    public function getReadNews(Request $request) {
+        $promote = Promote::find($request->id);
+        return view('user.read_news')
+        ->with('promote', $promote);
     }
 
     public function getContact() {
@@ -41,14 +48,17 @@ class UserController extends Controller
     }
 
     public function getProductDetail() {
+        session(['menu_active' => 'Product']);
         return view('user.product_detail');
     }
 
     public function getProductType() {
+        session(['menu_active' => 'Product']);
         return view('user.product_type');
     }
 
     public function getProductSelect(Request $request) {
+        session(['menu_active' => 'Product']);
         if ($request->product_type == 'complete') {
             $categorys = Category::where('filter_category', 1)->get();
             $sub_categorys = SubCategory::all();
@@ -69,6 +79,7 @@ class UserController extends Controller
     }
 
     public function getProductComplete() {
+        session(['menu_active' => 'Product']);
         $categorys = Category::where('filter_category', 1)->get();
         $sub_categorys = SubCategory::all();
         $products = Product::all();
@@ -116,6 +127,7 @@ class UserController extends Controller
     }
 
     public function getSubCategoryProduct(Request $request) {
+        session(['menu_active' => 'Product']);
         $products = Product::where('sub_category_id', $request->id)->get();
         return view('user.sub_category')
         ->with('products', $products);
