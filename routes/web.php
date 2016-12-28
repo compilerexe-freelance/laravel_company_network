@@ -16,6 +16,7 @@ Route::get('/', 'UserController@getHome')->name('home');
 Route::get('about', 'UserController@getAbout');
 Route::get('news', 'UserController@getNews');
 Route::get('news/read/{id}', 'UserController@getReadNews');
+Route::get('how_to_buy', 'UserController@getHowToBuy');
 Route::get('contact', 'UserController@getContact');
 
 Route::group(['prefix' => 'user'], function() {
@@ -83,9 +84,11 @@ Route::group(['middleware' => ['VerifyAdmin']], function() {
       Route::get('pr_promotion/delete/{id}', 'PromoteController@getDeletePromote');
     });
 
-    Route::group(['prefix' => 'change/ui'], function() {
+    Route::group(['prefix' => 'change_ui'], function() {
       Route::get('banner', 'ChangeUIController@getBanner');
       Route::post('banner', 'ChangeUIController@postBanner');
+      Route::get('how_to_buy', 'ChangeUIController@getHowToBuy');
+      Route::post('how_to_buy/edit', 'ChangeUIController@postEditHowToBuy');
     });
 
   }); // End Group Admin

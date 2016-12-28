@@ -190,7 +190,7 @@ $sub_categorys = SubCategory::all();
       </li>
 
       <li>
-        <a href="#">HOW TO BUY</a>
+        <a href="{{ url('how_to_buy') }}">HOW TO BUY</a>
       </li>
 
       <li>

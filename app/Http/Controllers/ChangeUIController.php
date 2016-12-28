@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Banner;
+use App\HowToBuy;
 use File;
 use Input;
 
@@ -46,5 +47,24 @@ class ChangeUIController extends Controller
         $get_banner->save();
       }
       return redirect()->back();
+    }
+
+    public function getHowToBuy() {
+        $how_to_buy = HowToBuy::find(1);
+        return view('admin.change_ui.how_to_buy')
+        ->with('how_to_buy', $how_to_buy);
+    }
+
+    public function postEditHowToBuy(Request $request) {
+        $how_to_buy = HowToBuy::find(1);
+        if ($how_to_buy) {
+            $how_to_buy->how_to_buy_detail = $request->how_to_buy_detail;
+            $how_to_buy->save();
+        } else {
+            $create_how_to_buy = new HowToBuy;
+            $create_how_to_buy->how_to_buy_detail = $request->how_to_buy_detail;
+            $create_how_to_buy->save();
+        }
+        return redirect()->back();
     }
 }

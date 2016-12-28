@@ -9,6 +9,7 @@ use App\SubCategory;
 use App\Product;
 use App\CustomProduct;
 use App\Promote;
+use App\HowToBuy;
 use PDF;
 
 class UserController extends Controller
@@ -120,6 +121,12 @@ class UserController extends Controller
 
     public function getMemberQuotation() {
         return view('user.member_create_quotation');
+    }
+
+    public function getHowToBuy() {
+        $how_to_buy = HowToBuy::find(1);
+        return view('user.how_to_buy')
+        ->with('how_to_buy', $how_to_buy);
     }
 
     public function getFormUploadQuotation() {

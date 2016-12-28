@@ -82,11 +82,9 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Change UI <span class="caret"></span></a>
 
           <ul class="dropdown-menu">
-            <li><a href="{{ url('admin/change/ui/banner') }}">Banner</a></li>
-            <!-- <li><a href="{{ url('admin/change/ui/public_relation') }}">PR / Promotion</a></li>
-            <li><a href="{{ url('admin/change/ui/promotion') }}">Promotion</a></li> -->
-            <li><a href="{{ url('admin/change/ui/how_to_buy') }}">How to buy</a></li>
-            <li><a href="{{ url('admin/change/ui/contact') }}">Contact</a></li>
+            <li><a href="{{ url('admin/change_ui/banner') }}">Banner</a></li>
+            <li><a href="{{ url('admin/change_ui/how_to_buy') }}">How to buy</a></li>
+            <li><a href="{{ url('admin/change_ui/contact') }}">Contact</a></li>
           </ul>
         </li>
 
