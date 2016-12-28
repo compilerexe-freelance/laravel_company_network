@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Banner;
 use App\HowToBuy;
+use App\Contact;
 use File;
 use Input;
 
@@ -64,6 +65,27 @@ class ChangeUIController extends Controller
             $create_how_to_buy = new HowToBuy;
             $create_how_to_buy->how_to_buy_detail = $request->how_to_buy_detail;
             $create_how_to_buy->save();
+        }
+        return redirect()->back();
+    }
+
+    public function getContact() {
+        $contact = Contact::find(1);
+        return view('admin.change_ui.contact')
+        ->with('contact', $contact);
+    }
+
+    public function postEditContact(Request $request) {
+        $contact = Contact::find(1);
+        if ($contact) {
+            $contact->contact_detail = $request->contact_detail;
+            $contact->contact_map = $request->contact_map;
+            $contact->save();
+        } else {
+            $create_contact = new Contact;
+            $create_contact->contact_detail = $request->contact_detail;
+            $create_contact->contact_map = $request->contact_map;
+            $create_contact->save();
         }
         return redirect()->back();
     }

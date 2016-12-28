@@ -8,21 +8,23 @@
 
                 <div class="panel-body">
 
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                         <div class="form-group">
-                            <div class="form-group"><strong>COMPANY INFOMATION</strong></div>
+                            {!! $contact->contact_detail !!}
+                            <!-- <div class="form-group"><strong>COMPANY INFOMATION</strong></div>
                             <div class="form-group">บริษัท ...</div>
                             <div class="form-group">ที่อยู่ ...</textarea>
                             </div>
                             <div class="form-group">รายละเอียด ...</textarea>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <div id="map" style="height: 400px; width: 100%;"></div>
-                            <script>
+                            {!! $contact->contact_map !!}
+                            <!-- <script>
                                 function initMap() {
                                     var uluru = {
                                         lat: -25.363,
@@ -39,7 +41,7 @@
                                 }
                             </script>
                             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAOvZ1MifC8aSH4GdHbfYzSh_Xt3S_WNA&callback=initMap">
-                            </script>
+                            </script> -->
                         </div>
                     </div>
 

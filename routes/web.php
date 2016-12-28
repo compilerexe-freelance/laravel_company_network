@@ -89,6 +89,8 @@ Route::group(['middleware' => ['VerifyAdmin']], function() {
       Route::post('banner', 'ChangeUIController@postBanner');
       Route::get('how_to_buy', 'ChangeUIController@getHowToBuy');
       Route::post('how_to_buy/edit', 'ChangeUIController@postEditHowToBuy');
+      Route::get('contact', 'ChangeUIController@getContact');
+      Route::post('contact/edit', 'ChangeUIController@postEditContact');
     });
 
   }); // End Group Admin

@@ -10,6 +10,7 @@ use App\Product;
 use App\CustomProduct;
 use App\Promote;
 use App\HowToBuy;
+use App\Contact;
 use PDF;
 
 class UserController extends Controller
@@ -45,7 +46,10 @@ class UserController extends Controller
     }
 
     public function getContact() {
-        return view('user.contact');
+        session(['menu_active' => 'Contact']);
+        $contact = Contact::find(1);
+        return view('user.contact')
+        ->with('contact', $contact);
     }
 
     public function getProductDetail() {
@@ -124,6 +128,7 @@ class UserController extends Controller
     }
 
     public function getHowToBuy() {
+        session(['menu_active' => 'HowToBuy']);
         $how_to_buy = HowToBuy::find(1);
         return view('user.how_to_buy')
         ->with('how_to_buy', $how_to_buy);

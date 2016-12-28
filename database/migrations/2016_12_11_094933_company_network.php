@@ -129,6 +129,7 @@ class CompanyNetwork extends Migration
         Schema::create('contact', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('contact_detail');
+            $table->longText('contact_map');
             $table->timestamps();
         });
     }

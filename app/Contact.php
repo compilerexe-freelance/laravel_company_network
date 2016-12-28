@@ -9,6 +9,7 @@ class Contact extends Model
     protected $table = 'contact';
 
     protected $fillable = [
-      'contact_detail'
+      'contact_detail',
+      'contact_map'
     ];
 }
