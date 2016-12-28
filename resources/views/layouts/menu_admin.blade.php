@@ -62,13 +62,34 @@
           </ul>
         </li>
 
+        @if (session()->get('menu_active') == 'Change_UI')
+          <li class="active dropdown">
+        @else
+          <li class="dropdown">
+        @endif
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Change UI <span class="caret"></span></a>
+
+          <ul class="dropdown-menu">
+            <li><a href="{{ url('admin/change/ui/banner') }}">Banner</a></li>
+            <li><a href="{{ url('admin/change/ui/public_relation') }}">Public Relation</a></li>
+            <li><a href="{{ url('admin/change/ui/promotion') }}">Promotion</a></li>
+            <li><a href="{{ url('admin/change/ui/how_to_buy') }}">How to buy</a></li>
+            <li><a href="{{ url('admin/change/ui/contact') }}">Contact</a></li>
+          </ul>
+        </li>
+
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+        @if (session()->get('menu_active') == 'Change_Password')
+          <li class="active dropdown">
+        @else
+          <li class="dropdown">
+        @endif
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrator <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <a href="#">Sign Out <i class="fa fa-sign-out"></i></a>
+            <li><a href="{{ url('admin/change/password') }}"><i class="fa fa-key"></i> Change Password</a></li>
+            <li><a href="{{ url('admin/logout') }}"><i class="fa fa-sign-out"></i> Sign Out</a></li>
           </ul>
         </li>
       </ul>

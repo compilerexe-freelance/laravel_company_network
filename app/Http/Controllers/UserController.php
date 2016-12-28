@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Banner;
 use App\Category;
 use App\SubCategory;
 use App\Product;
 use App\CustomProduct;
+use PDF;
 
 class UserController extends Controller
 {
     public function getHome() {
+        $banner = Banner::find(1);
         $products = Product::latest()->get();
         return view('user.home')
+        ->with('banner', $banner)
         ->with('products', $products);
     }
 
@@ -94,8 +98,13 @@ class UserController extends Controller
         ->with('extension', $extension);
     }
 
-    public function postPrintQuotation() {
-        
+    public function postPrintQuotation(Request $request) {
+        // $html = "<img src='http://localhost:3000/images/Moon.jpg'>";
+        // $pdf = PDF::loadHTML($html, 0);
+
+        $pdf = PDF::loadView('pdf.document');
+        // $pdf = PDF::loadView('pdf.document');
+        return $pdf->stream('document.pdf');
     }
 
     public function getMemberQuotation() {

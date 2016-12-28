@@ -1,3 +1,5 @@
+<?php
+
 return [
     'mode'               => '',
     'format'             => 'A4',
@@ -10,7 +12,7 @@ return [
     'marginHeader'       => 0,
     'marginFooter'       => 0,
     'orientation'        => 'P',
-    'title'              => 'Laravel PDF',
+    'title'              => 'Quotation',
     'author'             => '',
     'watermark'          => '',
     'showWatermark'      => false,
@@ -18,3 +20,5 @@ return [
     'SetDisplayMode'     => 'fullpage',
     'watermarkTextAlpha' => 0.1
 ];
+
+?>

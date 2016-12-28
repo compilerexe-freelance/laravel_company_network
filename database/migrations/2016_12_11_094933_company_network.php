@@ -13,6 +13,12 @@ class CompanyNetwork extends Migration
      */
     public function up()
     {
+        Schema::create('banner', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('file');
+            $table->timestamps();
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username')->unique();
@@ -84,6 +90,12 @@ class CompanyNetwork extends Migration
             $table->timestamps();
         });
 
+        Schema::create('quotation_count', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('quotation_no')->unsigned();
+            $table->timestamps();
+        });
+
         Schema::create('create_quotation', function (Blueprint $table) {
             $table->increments('id');
             $table->string('company_name');
@@ -91,6 +103,14 @@ class CompanyNetwork extends Migration
             $table->string('full_name');
             $table->string('email');
             $table->string('tel');
+            $table->timestamps();
+        });
+
+        Schema::create('quotation_product', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('id_create_quotation');
+            $table->string('id_product');
+            $table->string('array_custom_product');
             $table->timestamps();
         });
 
@@ -120,6 +140,7 @@ class CompanyNetwork extends Migration
      */
     public function down()
     {
+        Schema::drop('banner');
         Schema::drop('users');
         Schema::drop('administrator');
         Schema::drop('main_category');
@@ -128,7 +149,9 @@ class CompanyNetwork extends Migration
         Schema::drop('product');
         Schema::drop('custom_product');
         Schema::drop('promote');
+        Schema::drop('quotation_count');
         Schema::drop('create_quotation');
+        Schema::drop('quotation_product');
         Schema::drop('quotation_uploads');
         Schema::drop('about');
         Schema::drop('contact');
