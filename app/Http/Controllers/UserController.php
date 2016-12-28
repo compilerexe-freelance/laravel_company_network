@@ -13,10 +13,9 @@ use PDF;
 class UserController extends Controller
 {
     public function getHome() {
-        $banner = Banner::find(1);
+        session(['menu_active' => 'Home']);
         $products = Product::latest()->get();
         return view('user.home')
-        ->with('banner', $banner)
         ->with('products', $products);
     }
 
@@ -29,6 +28,7 @@ class UserController extends Controller
     }
 
     public function getNews() {
+        session(['menu_active' => 'News']);
         return view('user.news');
     }
 
@@ -80,7 +80,7 @@ class UserController extends Controller
 
     public function anyFormQuotation(Request $request) {
         $product = Product::find($request->id);
-        $custom_products = CustomProduct::where('id_product', $product->id)->get();
+        $custom_products = CustomProduct::where('product_id', $product->id)->get();
         return view('user.quotation_form')
         ->with('product', $product)
         ->with('custom_products', $custom_products);
@@ -116,7 +116,7 @@ class UserController extends Controller
     }
 
     public function getSubCategoryProduct(Request $request) {
-        $products = Product::where('id_sub_category', $request->id)->get();
+        $products = Product::where('sub_category_id', $request->id)->get();
         return view('user.sub_category')
         ->with('products', $products);
     }

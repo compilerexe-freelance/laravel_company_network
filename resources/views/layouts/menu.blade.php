@@ -25,7 +25,11 @@ $sub_categorys = SubCategory::all();
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
 
-      <li class="active">
+      @if (session()->get('menu_active') == 'Home')
+        <li class="active">
+      @else
+        <li>
+      @endif
         <a href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
       </li>
 
@@ -39,12 +43,12 @@ $sub_categorys = SubCategory::all();
 
               <ul class="dropdown-menu">
                 @foreach ($categorys as $category)
-                  @if ($category->id_main_category == $main_category->id)
+                  @if ($category->main_category_id == $main_category->id)
                     <li class="dropdown-submenu" id="state-submenu-{{ $category->category_name }}">
                       <a class="dropdown-item" href="#" id="submenu-{{ $category->category_name }}">{{ $category->category_name }}</a>
                       <ul class="dropdown-menu">
                         @foreach ($sub_categorys as $sub_category)
-                          @if ($sub_category->id_category == $category->id)
+                          @if ($sub_category->category_id == $category->id)
                             <li><a class="dropdown-item" href="{{ url('product/category/'.$sub_category->id) }}">{{ $sub_category->sub_category_name }}</a></li>
                           @endif
                         @endforeach
@@ -70,7 +74,7 @@ $sub_categorys = SubCategory::all();
 
                     foreach ($main_categorys as $buffer_main_category) {
                       foreach ($categorys as $category) {
-                        if ($buffer_main_category->id == $category->id_main_category) {
+                        if ($buffer_main_category->id == $category->main_category_id) {
                           echo "$('#state-submenu-". $category->category_name . "').attr('class', 'dropdown-submenu');";
                         }
                       }
@@ -160,7 +164,11 @@ $sub_categorys = SubCategory::all();
         <a href="{{ url('about') }}">ABOUT</a>
       </li>
 
-      <li>
+      @if (session()->get('menu_active') == 'News')
+        <li class="active">
+      @else
+        <li>
+      @endif
         <a href="{{ url('news') }}">NEWS</a>
       </li>
 

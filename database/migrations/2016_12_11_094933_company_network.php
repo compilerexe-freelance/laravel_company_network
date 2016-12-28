@@ -43,7 +43,7 @@ class CompanyNetwork extends Migration
 
         Schema::create('category', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_main_category');
+            $table->integer('main_category_id');
             $table->string('category_name');
             $table->tinyInteger('filter_category');
             $table->timestamps();
@@ -51,14 +51,14 @@ class CompanyNetwork extends Migration
 
         Schema::create('sub_category', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_category');
+            $table->integer('category_id');
             $table->string('sub_category_name');
             $table->timestamps();
         });
 
         Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_sub_category');
+            $table->integer('sub_category_id');
             $table->string('product_name');
             $table->longText('product_detail');
             $table->string('product_picture');
@@ -69,7 +69,7 @@ class CompanyNetwork extends Migration
 
         Schema::create('custom_product', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_product');
+            $table->integer('product_id');
             $table->string('product_name');
             $table->longText('product_detail');
             $table->string('product_picture');
@@ -79,13 +79,14 @@ class CompanyNetwork extends Migration
 
         // Schema::create('filter_product', function (Blueprint $table) {
         //     $table->increments('id');
-        //     $table->integer('id_product');
+        //     $table->integer('product_id');
         //     $table->tinyInteger('filter_product');
         //     $table->timestamps();
         // });
 
         Schema::create('promote', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('promote_title');
             $table->longText('promote_detail');
             $table->timestamps();
         });
@@ -108,8 +109,8 @@ class CompanyNetwork extends Migration
 
         Schema::create('quotation_product', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('id_create_quotation');
-            $table->string('id_product');
+            $table->string('create_quotation_id');
+            $table->string('product_id');
             $table->string('array_custom_product');
             $table->timestamps();
         });

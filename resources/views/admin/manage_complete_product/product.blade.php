@@ -29,7 +29,7 @@
                     </td>
                     <td>
                       @php
-                        $sub_category = App\SubCategory::find($product->id_sub_category);
+                        $sub_category = App\SubCategory::find($product->sub_category_id);
                         echo $sub_category->sub_category_name;
                       @endphp
                     </td>
@@ -61,7 +61,7 @@
                     <td>CUSTOM</td>
                     <td>
                       @php
-                        $product = App\Product::find($custom_product->id_product);
+                        $product = App\Product::find($custom_product->product_id);
                         echo $product->product_name;
                       @endphp
                     </td>

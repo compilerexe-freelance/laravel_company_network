@@ -9,7 +9,7 @@ class Category extends Model
     protected $table = 'category';
 
     protected $fillable = [
-      'id_main_category',
+      'main_category_id',
       'category_name'
     ];
 }

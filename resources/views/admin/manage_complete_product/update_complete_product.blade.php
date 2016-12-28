@@ -32,7 +32,7 @@
 
                                     <td class="text-right table-none-border">Sub Category</td>
                                     <td class="table-none-border">
-                                        <select class="form-control" name="id_sub_category" id="id_sub_category" disabled>
+                                        <select class="form-control" name="sub_category_id" id="sub_category_id" disabled>
                         @foreach ($sub_categorys as $sub_category)
                           <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category_name }}</option>
                         @endforeach
@@ -125,9 +125,9 @@
 
         $('#enabled_change_sub_category').on('change', function() {
             if ($(this).is(':checked')) {
-                $('#id_sub_category').prop('disabled', false);
+                $('#sub_category_id').prop('disabled', false);
             } else {
-                $('#id_sub_category').prop('disabled', true);
+                $('#sub_category_id').prop('disabled', true);
             }
         });
 

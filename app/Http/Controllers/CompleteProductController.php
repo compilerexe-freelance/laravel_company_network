@@ -33,7 +33,7 @@ class CompleteProductController extends Controller
 
     public function postCompleteProductInsert(Request $request) {
         $product = new Product;
-        $product->id_sub_category = $request->id_sub_category;
+        $product->sub_category_id = $request->sub_category_id;
         $product->product_name = $request->product_name;
         $product->product_detail = $request->product_detail;
         $filename = "";
@@ -65,8 +65,8 @@ class CompleteProductController extends Controller
 
     public function postCompleteProductUpdate(Request $request) {
         $product = Product::find($request->id);
-        if ($request->id_sub_category != null) {
-            $product->id_sub_category = $request->id_sub_category;
+        if ($request->sub_category_id != null) {
+            $product->sub_category_id = $request->sub_category_id;
         }
         $product->product_name = $request->product_name;
         $product->product_detail = $request->product_detail;
@@ -102,8 +102,8 @@ class CompleteProductController extends Controller
 
     public function postCustomProductInsert(Request $request) {
         $custom_product = new CustomProduct;
-        $get_id_product = Product::where('product_name', $request->link_product)->first();
-        $custom_product->id_product = $get_id_product->id;
+        $get_product_id = Product::where('product_name', $request->link_product)->first();
+        $custom_product->product_id = $get_product_id->id;
         $custom_product->product_name = $request->product_name;
         $custom_product->product_detail = $request->product_detail;
         $filename = "";
@@ -134,7 +134,7 @@ class CompleteProductController extends Controller
         $custom_product = CustomProduct::find($request->id);
         if ($request->link_product != null) {
           $product = Product::where('product_name', $request->link_product)->first();
-          $custom_product->id_product = $product->id;
+          $custom_product->product_id = $product->id;
         }
         $custom_product->product_name = $request->product_name;
         $custom_product->product_detail = $request->product_detail;

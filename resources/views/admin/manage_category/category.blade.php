@@ -29,7 +29,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>
                       @foreach ($main_categorys as $main_category)
-                        @if ($main_category->id == $category->id_main_category)
+                        @if ($main_category->id == $category->main_category_id)
                           {{ $main_category->main_category_name }}
                         @endif
                       @endforeach

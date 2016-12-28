@@ -13,10 +13,10 @@
                         <div class="form-group">
                             <ul>{{ $category->category_name }}
                                 @foreach ($sub_categorys as $sub_category)
-                                  @if ($sub_category->id_category == $category->id)
+                                  @if ($sub_category->category_id == $category->id)
                                     <ul>{{ $sub_category->sub_category_name }}
                                       @foreach ($products as $product)
-                                        @if ($product->id_sub_category == $sub_category->id)
+                                        @if ($product->sub_category_id == $sub_category->id)
                                           <li style="list-style-type: none;"><a href="{{ url('quotation/form/'.$product->id) }}">{{ $product->product_name }}</a></li>
                                         @endif
                                       @endforeach
@@ -30,7 +30,7 @@
 
                     @foreach ($categorys as $category)
                       @foreach ($sub_categorys as $sub_category)
-                        @if ($sub_category->id_category == $category->id)
+                        @if ($sub_category->category_id == $category->id)
                         <div class="col-md-12 text-center">
                             <div class="form-group">
                                 <hr>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                           @foreach ($products as $product)
-                            @if ($product->id_sub_category == $sub_category->id)
+                            @if ($product->sub_category_id == $sub_category->id)
 
 
                               <div class="col-md-12 text-center">

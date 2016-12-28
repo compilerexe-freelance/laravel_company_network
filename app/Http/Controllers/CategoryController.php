@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
     public function postCategoryInsert(Request $request) {
         $category = new Category;
-        $category->id_main_category = $request->select_main_category;
+        $category->main_category_id = $request->select_main_category;
         $category->category_name = $request->category_name;
         $category->filter_category = $request->filter_category;
         $category->save();
@@ -39,7 +39,7 @@ class CategoryController extends Controller
     public function postCategoryUpdate(Request $request) {
         $category = Category::where('id', $request->id)->first();
         if ($request->select_main_category != null) {
-            $category->id_main_category = $request->select_main_category;
+            $category->main_category_id = $request->select_main_category;
         }
         $category->category_name = $request->category_name;
         if ($request->filter_category != null) {

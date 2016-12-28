@@ -73,6 +73,10 @@ Route::group(['middleware' => ['VerifyAdmin']], function() {
 
     }); // End Group Manage
 
+    Route::group(['prefix' => 'content'], function() {
+
+    });
+
     Route::group(['prefix' => 'change/ui'], function() {
       Route::get('banner', 'ChangeUIController@getBanner');
       Route::post('banner', 'ChangeUIController@postBanner');

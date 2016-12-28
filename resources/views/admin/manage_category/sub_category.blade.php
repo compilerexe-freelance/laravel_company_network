@@ -31,9 +31,9 @@
                     <td>
                       @php
                         foreach ($categorys as $category) {
-                          if ($category->id == $sub_category->id_category) {
+                          if ($category->id == $sub_category->category_id) {
                             foreach ($main_categorys as $main_category) {
-                              if ($main_category->id == $category->id_main_category) {
+                              if ($main_category->id == $category->main_category_id) {
                                 echo $main_category->main_category_name;
                               }
                             }
@@ -44,7 +44,7 @@
                     <td>
                       @php
                         foreach ($categorys as $category) {
-                          if ($category->id == $sub_category->id_category) {
+                          if ($category->id == $sub_category->category_id) {
                             echo $category->category_name;
                           }
                         }
@@ -101,21 +101,21 @@
       });
 
       $('#select_main_category').on('change', function() {
-        var id_main_category = $('#select_main_category option:selected').val();
-        var id_category = null;
+        var main_category_id = $('#select_main_category option:selected').val();
+        var category_id = null;
 
-        $.post("{{ url('admin/manage/ajax/id_category') }}", {
-          id: id_main_category
+        $.post("{{ url('admin/manage/ajax/category_id') }}", {
+          id: main_category_id
         }, function(data, status) {
-          id_category = data;
+          category_id = data;
         }).done(function() {
           $.post("{{ url('admin/manage/ajax/category') }}", {
-            id: id_main_category
+            id: main_category_id
           }, function(data, status) {
             $('#select_category').empty();
             for (var i = 0; i < data.length; i++) {
               $('#select_category')
-              .append("<option id=\"" + id_category[i] + "\">" + data[i] + "</option>");
+              .append("<option id=\"" + category_id[i] + "\">" + data[i] + "</option>");
             }
             // console.log("data: " + data + "\n" + "status: " + status);
           });

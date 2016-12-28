@@ -29,7 +29,7 @@
                     {{ csrf_field() }}
                     <td class="text-right table-none-border">Sub Category</td>
                     <td class="table-none-border">
-                      <select class="form-control" name="id_sub_category">
+                      <select class="form-control" name="sub_category_id">
                         @foreach ($sub_categorys as $sub_category)
                           <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category_name }}</option>
                         @endforeach

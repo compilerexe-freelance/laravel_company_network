@@ -21,7 +21,7 @@ class SubCategoryController extends Controller
     }
 
     public function postAjaxIdCategory(Request $request) {
-        $categorys = Category::where('id_main_category', $request->id)->get();
+        $categorys = Category::where('main_category_id', $request->id)->get();
         $array_ids = array();
         foreach ($categorys as $category) {
             array_push($array_ids, $category->id);
@@ -30,7 +30,7 @@ class SubCategoryController extends Controller
     }
 
     public function postAjaxCategory(Request $request) {
-        $categorys = Category::where('id_main_category', $request->id)->get();
+        $categorys = Category::where('main_category_id', $request->id)->get();
         $array_categorys = array();
         foreach ($categorys as $category) {
           array_push($array_categorys, $category->category_name);
@@ -41,7 +41,7 @@ class SubCategoryController extends Controller
     public function postSubCategoryInsert(Request $request) {
         $sub_category = new SubCategory;
         $category = Category::where('category_name', $request->select_category)->first();
-        $sub_category->id_category = $category->id;
+        $sub_category->category_id = $category->id;
         $sub_category->sub_category_name = $request->sub_category_name;
         $sub_category->save();
         return redirect()->back();
@@ -52,9 +52,9 @@ class SubCategoryController extends Controller
         $categorys = Category::all();
         // $get_category = Category::find($request->id);
         $get_sub_category = SubCategory::find($request->id);
-        $get_category = Category::find($get_sub_category->id_category);
+        $get_category = Category::find($get_sub_category->category_id);
 
-        $get_main_category = MainCategory::find($get_category->id_main_category);
+        $get_main_category = MainCategory::find($get_category->main_category_id);
         $sub_categorys = SubCategory::all();
         // $get_sub_category = SubCategory::find($request->id);
         return view('admin.manage_category.update_sub_category')
@@ -69,7 +69,7 @@ class SubCategoryController extends Controller
     public function postSubCategoryUpdate(Request $request) {
         $sub_category = SubCategory::where('id', $request->id)->first();
         if ($request->select_category != null) {
-            $sub_category->id_category = $request->select_category;
+            $sub_category->category_id = $request->select_category;
         }
         $sub_category->sub_category_name = $request->sub_category_name;
         $sub_category->save();
