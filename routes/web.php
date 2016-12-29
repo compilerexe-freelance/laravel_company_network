@@ -93,6 +93,11 @@ Route::group(['middleware' => ['VerifyAdmin']], function() {
       Route::post('contact/edit', 'ChangeUIController@postEditContact');
     });
 
+    Route::group(['prefix' => 'report'], function() {
+      Route::get('visitors', 'ReportController@getWebsiteVisitors');
+      Route::get('members', 'ReportController@getMembers');
+    });
+
   }); // End Group Admin
 }); // End Middleware Admin
 

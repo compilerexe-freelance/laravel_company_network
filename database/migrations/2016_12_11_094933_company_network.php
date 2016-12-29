@@ -132,6 +132,18 @@ class CompanyNetwork extends Migration
             $table->longText('contact_map');
             $table->timestamps();
         });
+
+        Schema::create('report_website_visitors', function (Blueprint $table) {
+            $table->increments('id');
+            $table->ipAddress('ip_address');
+            $table->timestamps();
+        });
+
+        Schema::create('report_members', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('count');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -157,5 +169,7 @@ class CompanyNetwork extends Migration
         Schema::drop('quotation_uploads');
         Schema::drop('about');
         Schema::drop('contact');
+        Schema::drop('report_website_visitors');
+        Schema::drop('report_members');
     }
 }

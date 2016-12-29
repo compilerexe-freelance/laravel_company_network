@@ -88,6 +88,20 @@
           </ul>
         </li>
 
+        @if (session()->get('menu_active') == 'Report')
+          <li class="active dropdown">
+        @else
+          <li class="dropdown">
+        @endif
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Report <span class="caret"></span></a>
+
+          <ul class="dropdown-menu">
+            <li><a href="{{ url('admin/report/visitors') }}">Website Visitors</a></li>
+            <li><a href="{{ url('admin/report/members') }}">Members</a></li>
+            <li><a href="{{ url('admin/report/quotation') }}">Quotations</a></li>
+          </ul>
+        </li>
+
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
