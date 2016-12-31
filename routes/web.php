@@ -116,4 +116,5 @@ Route::group(['prefix' => 'quotation'], function() {
   Route::any('print', 'UserController@postPrintQuotation');
   Route::get('member/create', 'UserController@getMemberQuotation');
   Route::get('upload', 'UserController@getFormUploadQuotation');
+  Route::post('upload', 'UserController@postFormUploadQuotation');
 });

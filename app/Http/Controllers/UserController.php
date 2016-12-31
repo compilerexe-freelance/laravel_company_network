@@ -13,8 +13,11 @@ use App\HowToBuy;
 use App\Contact;
 use App\QuotationProduct;
 use App\CreateQuotation;
+use App\QuotationUploads;
 use App\ReportWebsiteVisitors;
 use PDF;
+use File;
+use Input;
 
 class UserController extends Controller
 {
@@ -183,6 +186,68 @@ class UserController extends Controller
     public function getFormUploadQuotation(Request $request) {
         $this->website_visitors($request);
         return view('user.quotation_form_upload');
+    }
+
+    public function postFormUploadQuotation(Request $request) {
+        $quotation_uploads = new QuotationUploads;
+        $filename = "";
+
+        if ($request->file('file_upload1') != '') {
+            $destinationPath = 'uploads/quotations/';
+            if (!file_exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0775);
+            }
+            $extension = Input::file('file_upload1')->getClientOriginalExtension();
+            $filename = rand(111111111,999999999).'.'.$extension;
+            Input::file('file_upload1')->move($destinationPath, $filename);
+            $quotation_uploads->file = $filename;
+            $quotation_uploads->save();
+        }
+        if ($request->file('file_upload2') != '') {
+            $destinationPath = 'uploads/quotations/';
+            if (!file_exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0775);
+            }
+            $extension = Input::file('file_upload2')->getClientOriginalExtension();
+            $filename = rand(111111111,999999999).'.'.$extension;
+            Input::file('file_upload2')->move($destinationPath, $filename);
+            $quotation_uploads->file = $filename;
+            $quotation_uploads->save();
+        }
+        if ($request->file('file_upload3') != '') {
+            $destinationPath = 'uploads/quotations/';
+            if (!file_exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0775);
+            }
+            $extension = Input::file('file_upload3')->getClientOriginalExtension();
+            $filename = rand(111111111,999999999).'.'.$extension;
+            Input::file('file_upload3')->move($destinationPath, $filename);
+            $quotation_uploads->file = $filename;
+            $quotation_uploads->save();
+        }
+        if ($request->file('file_upload4') != '') {
+            $destinationPath = 'uploads/quotations/';
+            if (!file_exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0775);
+            }
+            $extension = Input::file('file_upload4')->getClientOriginalExtension();
+            $filename = rand(111111111,999999999).'.'.$extension;
+            Input::file('file_upload4')->move($destinationPath, $filename);
+            $quotation_uploads->file = $filename;
+            $quotation_uploads->save();
+        }
+        if ($request->file('file_upload5') != '') {
+            $destinationPath = 'uploads/quotations/';
+            if (!file_exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0775);
+            }
+            $extension = Input::file('file_upload5')->getClientOriginalExtension();
+            $filename = rand(111111111,999999999).'.'.$extension;
+            Input::file('file_upload5')->move($destinationPath, $filename);
+            $quotation_uploads->file = $filename;
+            $quotation_uploads->save();
+        }
+        return redirect()->back()->with('status', 'success');
     }
 
     public function getSubCategoryProduct(Request $request) {

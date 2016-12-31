@@ -13,7 +13,6 @@
 
     <script src="https://use.fontawesome.com/35b861f9fb.js"></script>
     <script src="{{ url('js/jquery-3.1.1.js') }}"></script>
-    <script src="{{ url('js/tether.min.js') }}"></script>
     <script src="{{ url('bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ url('js/bootstrap-submenu.min.js') }}"></script>
     <script src="{{ url('summernote/summernote.min.js') }}"></script>
