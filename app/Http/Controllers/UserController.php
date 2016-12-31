@@ -11,6 +11,8 @@ use App\CustomProduct;
 use App\Promote;
 use App\HowToBuy;
 use App\Contact;
+use App\QuotationProduct;
+use App\CreateQuotation;
 use App\ReportWebsiteVisitors;
 use PDF;
 
@@ -124,23 +126,44 @@ class UserController extends Controller
     }
 
     public function postGuestQuotation(Request $request) {
-        $sum = $request->input_sum;
-        $vat = $request->input_vat;
-        $inc_vat = $request->input_inc_vat;
-        $extension = $request->extension;
-        return view('user.create_quotation')
-        ->with('sum', $sum)
-        ->with('vat', $vat)
-        ->with('inc_vat', $inc_vat)
-        ->with('extension', $extension);
+        // $product_id = $request->product_id;
+        // $sum = $request->input_sum;
+        // $vat = $request->input_vat;
+        // $inc_vat = $request->input_inc_vat;
+        // $extension = $request->extension;
+
+        // $quotation = new QuotationProduct;
+        // $quotation->product_id = $request->product_id;
+        // $quotation->array_custom_product = $request->extension;
+        // $quotation->save();
+        session(['product_id' => $request->product_id]);
+        session(['extension' => $request->extension]);
+
+        return view('user.create_quotation');
+        // ->with('product_id', $product_id)
+        // ->with('sum', $sum)
+        // ->with('vat', $vat)
+        // ->with('inc_vat', $inc_vat)
+        // ->with('extension', $extension);
     }
 
     public function postPrintQuotation(Request $request) {
-        // $html = "<img src='http://localhost:3000/images/Moon.jpg'>";
-        // $pdf = PDF::loadHTML($html, 0);
+        $quotation_product = new QuotationProduct;
+        $quotation_product->product_id = session()->get('product_id');
+        $quotation_product->array_custom_product = session()->get('extension');
+        $quotation_product->save();
+        $create_quotation = new CreateQuotation;
+        $create_quotation->quotation_product_id = $quotation_product->id;
+        $create_quotation->company_name = $request->company_name;
+        $create_quotation->address = $request->address;
+        $create_quotation->full_name = $request->full_name;
+        $create_quotation->email = $request->email;
+        $create_quotation->tel = $request->tel;
+        $create_quotation->save();
 
+        $get_quotation = CreateQuotation::find($create_quotation->id);
+        session(['get_quotation_id' => $get_quotation->id]);
         $pdf = PDF::loadView('pdf.document');
-        // $pdf = PDF::loadView('pdf.document');
         return $pdf->stream('document.pdf');
     }
 

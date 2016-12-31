@@ -84,14 +84,15 @@ class CompanyNetwork extends Migration
             $table->timestamps();
         });
 
-        Schema::create('quotation_count', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('quotation_no')->unsigned();
-            $table->timestamps();
-        });
+        // Schema::create('quotation_count', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->integer('quotation_no')->unsigned();
+        //     $table->timestamps();
+        // });
 
         Schema::create('create_quotation', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('quotation_product_id');
             $table->string('company_name');
             $table->string('address');
             $table->string('full_name');
@@ -102,7 +103,7 @@ class CompanyNetwork extends Migration
 
         Schema::create('quotation_product', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('create_quotation_id');
+            // $table->string('create_quotation_id');
             $table->string('product_id');
             $table->string('array_custom_product');
             $table->timestamps();
@@ -162,7 +163,7 @@ class CompanyNetwork extends Migration
         Schema::drop('product');
         Schema::drop('custom_product');
         Schema::drop('promote');
-        Schema::drop('quotation_count');
+        // Schema::drop('quotation_count');
         Schema::drop('create_quotation');
         Schema::drop('quotation_product');
         Schema::drop('how_to_buy');

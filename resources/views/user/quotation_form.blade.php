@@ -153,6 +153,7 @@
                         <!-- <a href="{{ url('quotation/create') }}"><button type="button" class="btn btn-success" style="//margin-top: 20px;"><i class="fa fa-shopping-cart fa-lg"></i> สร้างใบเสนอราคา</button></a> -->
                         <form action="{{ url('quotation/create') }}" method="post">
                           {{ csrf_field() }}
+                          <input type="text" name="product_id" value="{{ $product->id }}" hidden>
                           <input type="text" name="input_sum" id="input_sum" hidden>
                           <input type="text" name="input_vat" id="input_vat" hidden>
                           <input type="text" name="input_inc_vat" id="input_inc_vat" hidden>
