@@ -23,11 +23,11 @@
                                       {{ csrf_field() }}
                                       <tr>
                                           <td class="text-md-center"><input type="radio" name="product_type" value="complete" checked></td>
-                                          <td>สินค้าสำเร็จรูป</td>
+                                          <td>สินค้าสำเร็จรูป (Complete Product)</td>
                                       </tr>
                                       <tr>
                                           <td class="text-md-center"><input type="radio" name="product_type" value="custom"></td>
-                                          <td>สินค้าประกอบเอง</td>
+                                          <td>สินค้าประกอบ (Custom Product)</td>
                                       </tr>
                                       <tr>
                                           <td></td>

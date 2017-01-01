@@ -4,6 +4,7 @@
 
         <div class="col-md-3">
 
+            <!--
             <div class="form-group" style="//margin-top: 30px;">
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-success">
@@ -27,6 +28,7 @@
                     <a href="#" class="list-group-item">text ...</a>
                 </div>
             </div>
+            -->
 
             <div class="form-group">
                 <div class="list-group">
@@ -34,17 +36,17 @@
                         <strong>Category</strong>
                     </a>
                     <div class="list-group-item">
-                        <span>TOWER 1 CPU (E3)</span>
-                        <hr style="margin-top: 5px; margin-bottom: 5px;">
-                        <a href="#">DELL ...</a><br>
-                        <a href="#">DELL ...</a><br>
-                        <a href="#">DELL ...</a><br><br>
+                        @php use App\SubCategory; $sub_categorys = SubCategory::all();
+                            foreach ($sub_categorys as $sub_category) {
+                               $product = App\Product::find($sub_category->id);
+                               echo '
+                                    <span>'.$sub_category->sub_category_name.'</span>
+                                    <hr style="margin-top: 5px; margin-bottom: 5px;">
+                                    <a href="'. url('quotation/form/'.$product->id) .'">'.$product->product_name.'</a><br><br>
+                               ';
+                            }
+                        @endphp
 
-                        <span>TOWER 1 CPU (E5)</span>
-                        <hr style="margin-top: 5px; margin-bottom: 5px;">
-                        <a href="#">DELL ...</a><br>
-                        <a href="#">DELL ...</a><br>
-                        <a href="#">DELL ...</a>
                     </div>
                 </div>
             </div>
