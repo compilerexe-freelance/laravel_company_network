@@ -83,24 +83,25 @@
 
                     <div class="col-md-10 col-md-offset-1 text-center">
                         <div class="form-group table-responsive">
-                            <table class="table table-bordered">
+
+                            <table class="table">
                                 <thead>
                                     <tr>
-                                        <th style="border-top: 1px solid #fff !important; border-left: 1px solid #fff !important; border-right: 1px solid #fff !important;"></th>
-                                        <th style="border-top: 1px solid #fff !important; border-left: 1px solid #fff !important; border-right: 1px solid #fff !important;"></th>
-                                        <th style="border-top: 1px solid #fff !important; border-left: 1px solid #fff !important; border-right: 1px solid #fff !important;"></th>
-                                        <th style="border-top: 1px solid #fff !important; border-left: 1px solid #fff !important; border-right: 1px solid #fff !important;"></th>
-                                        <th style="border-top: 1px solid #fff !important; border-left: 1px solid #fff !important; border-right: 1px solid #fff !important;"></th>
+                                        <th class="table-none-border" style="border-top: 1px solid #fff !important; border-left: 1px solid #fff !important; border-right: 1px solid #fff !important;"></th>
+                                        <th class="table-none-border" style="border-top: 1px solid #fff !important; border-left: 1px solid #fff !important; border-right: 1px solid #fff !important;"></th>
+                                        <th class="table-none-border" style="border-top: 1px solid #fff !important; border-left: 1px solid #fff !important; border-right: 1px solid #fff !important;"></th>
+                                        <th class="table-none-border" style="border-top: 1px solid #fff !important; border-left: 1px solid #fff !important; border-right: 1px solid #fff !important;"></th>
+                                        <th class="table-none-border" style="border-top: 1px solid #fff !important; border-left: 1px solid #fff !important; border-right: 1px solid #fff !important;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($custom_products as $custom_product)
                                       <tr>
-                                        <td><img src="{{ url('uploads/products/'.$custom_product->product_picture) }}" alt="" class="img-responsive"></td>
-                                        <td>{{ $custom_product->product_name }}</td>
-                                        <td>+{{ number_format($custom_product->product_price) }} Baht</td>
-                                        <td><button type="button" id="btn_add_{{ $custom_product->id }}" class="btn btn-success" style="width: 100px;">Add</button></td>
-                                        <td><button type="button" id="btn_remove_{{ $custom_product->id }}" class="btn btn-warning" style="width: 100px;">Remove</button></td>
+                                        <td class="table-none-border"><img src="{{ url('uploads/products/'.$custom_product->product_picture) }}" alt="" class="img-responsive"></td>
+                                        <td class="table-none-border">{{ $custom_product->product_name }}</td>
+                                        <td class="table-none-border">+{{ number_format($custom_product->product_price) }} Baht</td>
+                                        <td class="table-none-border"><button type="button" id="btn_add_{{ $custom_product->id }}" class="btn btn-success" style="width: 100px;">Add</button></td>
+                                        <td class="table-none-border"><button type="button" id="btn_remove_{{ $custom_product->id }}" class="btn btn-warning" style="width: 100px;">Remove</button></td>
                                       </tr>
 
                                       <script>

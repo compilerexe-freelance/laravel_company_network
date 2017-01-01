@@ -5,7 +5,7 @@
             <div class="panel panel-default" style="border-radius: 0px;">
                 <div class="panel-body text-center">
 
-                  <form action="{{ url('admin/change/ui/banner') }}" method="post" enctype="multipart/form-data">
+                  <form action="{{ url('admin/change_ui/banner') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="col-md-4 col-md-offset-4">
                       <div class="form-group">

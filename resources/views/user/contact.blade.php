@@ -21,8 +21,8 @@
                     </div>
 
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <div id="map" style="height: 400px; width: 100%;"></div>
+                        <div class="form-group text-center">
+                            <!-- <div id="map" style="height: 400px; width: 100%;"></div> -->
                             {!! $contact->contact_map !!}
                             <!-- <script>
                                 function initMap() {
