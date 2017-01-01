@@ -4,6 +4,10 @@
         @if (session('status') == 'success')
             swal("", "Upload Complete.", "success")
         @endif
+
+        @if (session('status') == 'error')
+            swal("", "Please upload file type jpg or png only.", "error")
+        @endif
     </script>
 
 <div class="container">

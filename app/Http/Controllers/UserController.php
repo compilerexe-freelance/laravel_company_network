@@ -200,13 +200,15 @@ class UserController extends Controller
     public function postFormUploadQuotation(Request $request) {
         $quotation_uploads = new QuotationUploads;
         $filename = "";
-
         if ($request->file('file_upload1') != '') {
             $destinationPath = 'uploads/quotations/';
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
             }
             $extension = Input::file('file_upload1')->getClientOriginalExtension();
+            if ($extension != 'jpg' && $extension != 'png') {
+                return redirect()->back()->with('status', 'error');
+            }
             $filename = rand(111111111,999999999).'.'.$extension;
             Input::file('file_upload1')->move($destinationPath, $filename);
             $quotation_uploads->file = $filename;
@@ -218,6 +220,9 @@ class UserController extends Controller
                 File::makeDirectory($destinationPath, 0775);
             }
             $extension = Input::file('file_upload2')->getClientOriginalExtension();
+            if ($extension != 'jpg' && $extension != 'png') {
+                return redirect()->back()->with('status', 'error');
+            }
             $filename = rand(111111111,999999999).'.'.$extension;
             Input::file('file_upload2')->move($destinationPath, $filename);
             $quotation_uploads->file = $filename;
@@ -229,6 +234,9 @@ class UserController extends Controller
                 File::makeDirectory($destinationPath, 0775);
             }
             $extension = Input::file('file_upload3')->getClientOriginalExtension();
+            if ($extension != 'jpg' && $extension != 'png') {
+                return redirect()->back()->with('status', 'error');
+            }
             $filename = rand(111111111,999999999).'.'.$extension;
             Input::file('file_upload3')->move($destinationPath, $filename);
             $quotation_uploads->file = $filename;
@@ -240,6 +248,9 @@ class UserController extends Controller
                 File::makeDirectory($destinationPath, 0775);
             }
             $extension = Input::file('file_upload4')->getClientOriginalExtension();
+            if ($extension != 'jpg' && $extension != 'png') {
+                return redirect()->back()->with('status', 'error');
+            }
             $filename = rand(111111111,999999999).'.'.$extension;
             Input::file('file_upload4')->move($destinationPath, $filename);
             $quotation_uploads->file = $filename;
@@ -251,6 +262,9 @@ class UserController extends Controller
                 File::makeDirectory($destinationPath, 0775);
             }
             $extension = Input::file('file_upload5')->getClientOriginalExtension();
+            if ($extension != 'jpg' && $extension != 'png') {
+                return redirect()->back()->with('status', 'error');
+            }
             $filename = rand(111111111,999999999).'.'.$extension;
             Input::file('file_upload5')->move($destinationPath, $filename);
             $quotation_uploads->file = $filename;
