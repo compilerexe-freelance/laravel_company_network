@@ -96,6 +96,8 @@ Route::group(['middleware' => ['VerifyAdmin']], function() {
     Route::group(['prefix' => 'report'], function() {
       Route::get('visitors', 'ReportController@getWebsiteVisitors');
       Route::get('members', 'ReportController@getMembers');
+      Route::get('quotations', 'ReportController@getQuotations');
+      Route::get('quotations/{id}', 'ReportController@getViewQuotations');
     });
 
   }); // End Group Admin

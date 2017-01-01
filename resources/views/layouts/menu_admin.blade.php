@@ -98,7 +98,7 @@
           <ul class="dropdown-menu">
             <li><a href="{{ url('admin/report/visitors') }}">Website Visitors</a></li>
             <li><a href="{{ url('admin/report/members') }}">Members</a></li>
-            <li><a href="{{ url('admin/report/quotation') }}">Quotations</a></li>
+            <li><a href="{{ url('admin/report/quotations') }}">Quotations</a></li>
           </ul>
         </li>
 

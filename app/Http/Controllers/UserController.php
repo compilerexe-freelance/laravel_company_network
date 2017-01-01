@@ -141,6 +141,7 @@ class UserController extends Controller
         // $quotation->save();
         session(['product_id' => $request->product_id]);
         session(['extension' => $request->extension]);
+        session(['once_print' => 0]);
 
         return view('user.create_quotation');
         // ->with('product_id', $product_id)
@@ -151,23 +152,31 @@ class UserController extends Controller
     }
 
     public function postPrintQuotation(Request $request) {
-        $quotation_product = new QuotationProduct;
-        $quotation_product->product_id = session()->get('product_id');
-        $quotation_product->array_custom_product = session()->get('extension');
-        $quotation_product->save();
-        $create_quotation = new CreateQuotation;
-        $create_quotation->quotation_product_id = $quotation_product->id;
-        $create_quotation->company_name = $request->company_name;
-        $create_quotation->address = $request->address;
-        $create_quotation->full_name = $request->full_name;
-        $create_quotation->email = $request->email;
-        $create_quotation->tel = $request->tel;
-        $create_quotation->save();
+        $once_print = session()->get('once_print');
+        $once_print++;
+        session(['once_print' => $once_print]);
 
-        $get_quotation = CreateQuotation::find($create_quotation->id);
-        session(['get_quotation_id' => $get_quotation->id]);
-        $pdf = PDF::loadView('pdf.document');
-        return $pdf->stream('document.pdf');
+        if ($once_print == 1) {
+            $quotation_product = new QuotationProduct;
+            $quotation_product->product_id = session()->get('product_id');
+            $quotation_product->array_custom_product = session()->get('extension');
+            $quotation_product->save();
+            $create_quotation = new CreateQuotation;
+            $create_quotation->quotation_product_id = $quotation_product->id;
+            $create_quotation->company_name = $request->company_name;
+            $create_quotation->address = $request->address;
+            $create_quotation->full_name = $request->full_name;
+            $create_quotation->email = $request->email;
+            $create_quotation->tel = $request->tel;
+            $create_quotation->save();
+            $get_quotation = CreateQuotation::find($create_quotation->id);
+            session(['get_quotation_id' => $get_quotation->id]);
+            $pdf = PDF::loadView('pdf.document');
+            return $pdf->stream('document.pdf');
+        } else {
+            return redirect()->route('home');
+        }
+
     }
 
     public function getMemberQuotation(Request $request) {
