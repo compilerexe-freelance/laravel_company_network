@@ -87,6 +87,8 @@ Route::group(['middleware' => ['VerifyAdmin']], function() {
     Route::group(['prefix' => 'change_ui'], function() {
       Route::get('banner', 'ChangeUIController@getBanner');
       Route::post('banner', 'ChangeUIController@postBanner');
+      Route::get('about', 'ChangeUIController@getAbout');
+      Route::post('about/edit', 'ChangeUIController@postEditAbout');
       Route::get('how_to_buy', 'ChangeUIController@getHowToBuy');
       Route::post('how_to_buy/edit', 'ChangeUIController@postEditHowToBuy');
       Route::get('contact', 'ChangeUIController@getContact');

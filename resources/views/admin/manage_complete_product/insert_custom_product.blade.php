@@ -20,7 +20,7 @@
                 <tr>
                   <td class="text-right table-none-border"></td>
                   <td class="table-none-border">
-                    <strong style="color: blue; font-size: 20px;">Product > Complete Product > Insert Custom Product</strong>
+                    <strong style="color: blue; font-size: 20px;">Product > Insert Custom Product</strong>
                   </td>
                 </tr>
 
@@ -59,6 +59,12 @@
                   <td class="text-right table-none-border">Picture</td>
                   <td class="table-none-border text-left">
                     <input type="file" name="product_picture">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-right table-none-border">General Price</td>
+                  <td class="table-none-border text-left">
+                    <input type="text" class="form-control" name="general_price">
                   </td>
                 </tr>
                 <tr>

@@ -12,7 +12,7 @@
               <thead>
                 <tr class="active">
                   <th>No.</th>
-                  <th>Type</th>
+                  <!--<th>Type</th>-->
                   <th>Sub Category</th>
                   <th>Product Name</th>
                   <th>Edit</th>
@@ -24,9 +24,9 @@
                 @foreach ($products as $product)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>
+                    <!--<td>
                       COMPLETE
-                    </td>
+                    </td>-->
                     <td>
                       @php
                         $sub_category = App\SubCategory::find($product->sub_category_id);

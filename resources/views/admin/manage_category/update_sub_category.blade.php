@@ -60,7 +60,11 @@
                       <select name="select_category" id="select_category" class="form-control" disabled>
                         @foreach ($categorys as $category)
                           @if ($category->main_category_id == $get_main_category->id)
-                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                            @if ($sub_category->category_id == $category->id)
+                              <option value="{{ $category->id }}" selected>{{ $category->category_name }}</option>
+                            @else
+                              <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                            @endif
                           @endif
                         @endforeach
                       </select>

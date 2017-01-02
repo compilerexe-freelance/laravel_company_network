@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Banner;
+use App\About;
 use App\HowToBuy;
 use App\Contact;
 use File;
@@ -48,6 +49,25 @@ class ChangeUIController extends Controller
         $get_banner->save();
       }
       return redirect()->back();
+    }
+
+    public function getAbout() {
+        $about = About::find(1);
+        return view('admin.change_ui.about')
+        ->with('about', $about);
+    }
+
+    public function postEditAbout(Request $request) {
+        $about = About::find(1);
+        if ($about) {
+            $about->about_detail = $request->about_detail;
+            $about->save();
+        } else {
+            $create_about = new About;
+            $create_about->about_detail = $request->about_detail;
+            $create_about->save();
+        }
+        return redirect()->back();
     }
 
     public function getHowToBuy() {

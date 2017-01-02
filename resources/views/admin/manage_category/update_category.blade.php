@@ -43,7 +43,11 @@
                     <td>
                       <select name="select_main_category" class="form-control" id="select_main_category" disabled>
                         @foreach ($main_categorys as $main_category)
-                          <option value="{{ $main_category->id }}">{{ $main_category->main_category_name }}</option>
+                          @if ($get_category->main_category_id == $main_category->id)
+                            <option value="{{ $main_category->id }}" selected>{{ $main_category->main_category_name }}</option>
+                          @else
+                            <option value="{{ $main_category->id }}">{{ $main_category->main_category_name }}</option>
+                          @endif
                         @endforeach
                       </select>
                     </td>
@@ -58,8 +62,13 @@
                     <td style="color: red; font-weight: bold;">Filter Category</td>
                     <td>
                       <select name="filter_category" id="filter_category" class="form-control" disabled>
-                        <option value="1">Complete</option>
-                        <option value="0">Custom</option>
+                        @if ($get_category->filter_category == 0)
+                          <option value="0" selected>Complete</option>
+                          <option value="1">Custom</option>
+                        @else
+                          <option value="0">Complete</option>
+                          <option value="1" selected>Custom</option>
+                        @endif
                       </select>
                     </td>
                     <td colspan="2">

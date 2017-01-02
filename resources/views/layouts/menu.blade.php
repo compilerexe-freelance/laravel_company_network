@@ -39,7 +39,7 @@ $sub_categorys = SubCategory::all();
         <li class="dropdown">
       @endif
       <!-- <li class="dropdown"> -->
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PRODUCT <span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="menu-product">PRODUCT <span class="caret"></span></a>
 
         <ul class="dropdown-menu">
           @foreach ($main_categorys as $main_category)
@@ -49,8 +49,14 @@ $sub_categorys = SubCategory::all();
               <ul class="dropdown-menu">
                 @foreach ($categorys as $category)
                   @if ($category->main_category_id == $main_category->id)
-                    <li class="dropdown-submenu" id="state-submenu-{{ $category->category_name }}">
-                      <a class="dropdown-item" href="#" id="submenu-{{ $category->category_name }}">{{ $category->category_name }}</a>
+
+                    @php
+                      // check spacebar in category name.
+                      $new_category_name = str_replace(" ", "-", $category->category_name);
+                    @endphp
+
+                    <li class="dropdown-submenu" id="state-submenu-{{ $new_category_name }}">
+                      <a class="dropdown-item" href="#" id="submenu-{{ $new_category_name }}">{{ $category->category_name }}</a>
                       <ul class="dropdown-menu">
                         @foreach ($sub_categorys as $sub_category)
                           @if ($sub_category->category_id == $category->id)
@@ -80,7 +86,9 @@ $sub_categorys = SubCategory::all();
                     foreach ($main_categorys as $buffer_main_category) {
                       foreach ($categorys as $category) {
                         if ($buffer_main_category->id == $category->main_category_id) {
-                          echo "$('#state-submenu-". $category->category_name . "').attr('class', 'dropdown-submenu');";
+                          // check spacebar in category name.
+                          $new_category_name = str_replace(" ", "-", $category->category_name);
+                          echo "$('#state-submenu-". $new_category_name . "').attr('class', 'dropdown-submenu');";
                         }
                       }
                     }
@@ -90,12 +98,16 @@ $sub_categorys = SubCategory::all();
 
                 @php
                   foreach ($categorys as $category) {
-                    echo "$('#submenu-". $category->category_name ."').on('mouseover', function() {
-                      $('#state-submenu-". $category->category_name ."').attr('class', 'dropdown-submenu open');";
+                    // check spacebar in category name.
+                    $new_category_name = str_replace(" ", "-", $category->category_name);
+                    echo "$('#submenu-". $new_category_name ."').on('mouseover', function() {
+                      $('#state-submenu-". $new_category_name ."').attr('class', 'dropdown-submenu open');";
 
                       foreach ($categorys as $buffer_category) {
-                        if ($buffer_category->category_name != $category->category_name) {
-                          echo "$('#state-submenu-". $buffer_category->category_name ."').attr('class', 'dropdown-submenu');";
+                        // check spacebar in category name.
+                        $new_buffer_category_name = str_replace(" ", "-", $buffer_category->category_name);
+                        if ($new_buffer_category_name != $new_category_name) {
+                          echo "$('#state-submenu-". $new_buffer_category_name ."').attr('class', 'dropdown-submenu');";
                         }
                       }
 
@@ -165,7 +177,11 @@ $sub_categorys = SubCategory::all();
 
       <!-- END SOLUTION -->
 
-      <li>
+      @if (session()->get('menu_active') == 'About')
+        <li class="active">
+      @else
+        <li>
+      @endif
         <a href="{{ url('about') }}">ABOUT</a>
       </li>
 

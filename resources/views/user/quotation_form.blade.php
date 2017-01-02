@@ -19,7 +19,7 @@
 
                     <div class="col-md-10 col-md-offset-1 text-center">
                         <div class="form-group">
-                          <span style="font-size: 20px; color: blue;">{{ $product->product_name }}</span>
+                          <span style="font-size: 26px; color: blue;">{{ $product->product_name }}</span>
                         </div>
                     </div>
                     <div class="col-md-10 col-md-offset-1 text-center">
@@ -30,6 +30,15 @@
                       <div class="form-group">
                         {!! $product->product_detail !!}
                       </div>
+                    </div>
+
+                    <div class="col-md-10 col-md-offset-2" style="text-align: right;">
+                        <div class="form-group">
+                            <span style="font-size: 16px;">ราคาปกติ {{ number_format($product->general_price) }} บาท</span>
+                        </div>
+                        <div class="form-group">
+                            <span style="color: green; font-size: 18px;">ราคาพิเศษ {{ number_format($product->product_price) }} บาท</span>
+                        </div>
                     </div>
 
                     <div class="col-md-10 col-md-offset-1">

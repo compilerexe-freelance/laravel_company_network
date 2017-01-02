@@ -19,7 +19,7 @@
                             <tr>
                                 <td class="text-right table-none-border"></td>
                                 <td class="table-none-border">
-                                    <strong style="color: blue; font-size: 20px;">Product > Complete Product > Edit Product</strong>
+                                    <strong style="color: blue; font-size: 20px;">Product > Edit Product</strong>
                                 </td>
                             </tr>
 
@@ -33,10 +33,14 @@
                                     <td class="text-right table-none-border">Sub Category</td>
                                     <td class="table-none-border">
                                         <select class="form-control" name="sub_category_id" id="sub_category_id" disabled>
-                        @foreach ($sub_categorys as $sub_category)
-                          <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category_name }}</option>
-                        @endforeach
-                      </select>
+                                            @foreach ($sub_categorys as $sub_category)
+                                                @if ($get_complete_product->sub_category_id == $sub_category->id)
+                                                    <option value="{{ $sub_category->id }}" selected>{{ $sub_category->sub_category_name }}</option>
+                                                @else
+                                                    <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category_name }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
                                     </td>
                                     <td class="table-none-border">
                                         <!-- <label for="" class="form-check-inline"> -->

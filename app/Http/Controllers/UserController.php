@@ -9,6 +9,7 @@ use App\SubCategory;
 use App\Product;
 use App\CustomProduct;
 use App\Promote;
+use App\About;
 use App\HowToBuy;
 use App\Contact;
 use App\QuotationProduct;
@@ -18,6 +19,7 @@ use App\ReportWebsiteVisitors;
 use PDF;
 use File;
 use Input;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -46,8 +48,11 @@ class UserController extends Controller
     }
 
     public function getAbout(Request $request) {
+        session(['menu_active' => 'About']);
+        $about = About::find(1);
         $this->website_visitors($request);
-        return view('user.about');
+        return view('user.about')
+        ->with('about', $about);
     }
 
     public function getNews(Request $request) {
@@ -89,7 +94,7 @@ class UserController extends Controller
         session(['menu_active' => 'Product']);
         $this->website_visitors($request);
         if ($request->product_type == 'complete') {
-            $categorys = Category::where('filter_category', 1)->get();
+            $categorys = Category::where('filter_category', 0)->get();
             $sub_categorys = SubCategory::all();
             $products = Product::all();
             return view('user.product_complete')
@@ -97,7 +102,7 @@ class UserController extends Controller
             ->with('sub_categorys', $sub_categorys)
             ->with('products', $products);
         } else {
-            $categorys = Category::where('filter_category', 0)->get();
+            $categorys = Category::where('filter_category', 1)->get();
             $sub_categorys = SubCategory::all();
             $products = Product::all();
             return view('user.product_custom')
@@ -154,8 +159,25 @@ class UserController extends Controller
     public function postPrintQuotation(Request $request) {
         $once_print = session()->get('once_print');
         $once_print++;
+        // expired
+        $carbon = Carbon::now();
+        $thai_month_arr=array(
+            "1"=>"มกราคม",
+            "2"=>"กุมภาพันธ์",
+            "3"=>"มีนาคม",
+            "4"=>"เมษายน",
+            "5"=>"พฤษภาคม",
+            "6"=>"มิถุนายน",
+            "7"=>"กรกฎาคม",
+            "8"=>"สิงหาคม",
+            "9"=>"กันยายน",
+            "10"=>"ตุลาคม",
+            "11"=>"พฤศจิกายน",
+            "12"=>"ธันวาคม"
+        );
+        $expired = $carbon->addDays(15)->addYears(543)->format('d').' '.$thai_month_arr[$carbon->now()->month].' '.$carbon->year;
+        session(['expired' => $expired]);
         session(['once_print' => $once_print]);
-
         if ($once_print == 1) {
             $quotation_product = new QuotationProduct;
             $quotation_product->product_id = session()->get('product_id');

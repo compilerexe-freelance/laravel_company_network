@@ -19,7 +19,7 @@
                             <tr>
                                 <td class="align-middle text-md-right table-none-border"></td>
                                 <td class="table-none-border">
-                                    <strong style="color: blue; font-size: 20px;">Product > Complete Product > Edit Custom Product</strong>
+                                    <strong style="color: blue; font-size: 20px;">Product > Edit Custom Product</strong>
                                 </td>
                                 <td class="table-none-border"></td>
                             </tr>
@@ -32,15 +32,17 @@
                                     <td class="text-right table-none-border">Link Product</td>
                                     <td class="table-none-border">
                                         <select class="form-control" name="link_product" id="link_product" disabled>
-                              @php
-                                $products = App\Product::all();
-                                foreach ($products as $product) {
-                                  echo "
-                                    <option id=\"".$product->id."\">".$product->product_name."</option>
-                                  ";
-                                }
-                              @endphp
-                            </select>
+                                          @php
+                                            $products = App\Product::all();
+                                            foreach ($products as $product) {
+                                                if ($get_custom_product->product_id == $product->id) {
+                                                    echo "<option id=\"".$product->id."\" selected>".$product->product_name."</option>";
+                                                } else {
+                                                    echo "<option id=\"".$product->id."\">".$product->product_name."</option>";
+                                                }
+                                            }
+                                          @endphp
+                                        </select>
                                     </td>
                                     <td class="table-none-border">
                                         <!-- <label for="" class="form-check-inline"> -->
@@ -75,6 +77,12 @@
                                         <!-- <label for="" class="form-check-inline"> -->
                                         <input type="checkbox" class="form-check-input" name="" id="enabled_change_picture"> Enabled
                                         <!-- </label> -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right table-none-border">General Price</td>
+                                    <td class="table-none-border text-left">
+                                        <input type="text" class="form-control" name="general_price" value="{{ $get_custom_product->general_price }}">
                                     </td>
                                 </tr>
                                 <tr>

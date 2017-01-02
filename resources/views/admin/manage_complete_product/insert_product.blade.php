@@ -20,7 +20,7 @@
                 <tr>
                   <td class="text-right table-none-border"></td>
                   <td class="table-none-border">
-                    <strong style="color: blue; font-size: 20px;">Product > Complete Product > Insert Product</strong>
+                    <strong style="color: blue; font-size: 20px;">Product > Insert Product</strong>
                   </td>
                 </tr>
 

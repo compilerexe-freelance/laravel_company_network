@@ -58,8 +58,8 @@
                     <td><b>Filter Category</b></td>
                     <td colspan="2">
                       <select name="filter_category" class="form-control">
-                        <option value="1">Complete</option>
-                        <option value="0">Custom</option>
+                        <option value="0">Complete</option>
+                        <option value="1">Custom</option>
                       </select>
                     </td>
                     <td colspan="2"></td>

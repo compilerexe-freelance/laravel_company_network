@@ -117,6 +117,7 @@ class CompleteProductController extends Controller
             Input::file('product_picture')->move($destinationPath, $filename);
             $custom_product->product_picture = $filename;
         }
+        $custom_product->general_price = $request->general_price;
         $custom_product->product_price = $request->product_price;
         $custom_product->save();
         return redirect()->route('manage_complete_product');
@@ -150,6 +151,7 @@ class CompleteProductController extends Controller
             Input::file('product_picture')->move($destinationPath, $filename);
             $custom_product->product_picture = $filename;
         }
+        $custom_product->general_price = $request->general_price;
         $custom_product->product_price = $request->product_price;
         $custom_product->save();
         return redirect()->route('manage_complete_product');

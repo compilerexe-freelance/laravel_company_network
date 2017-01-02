@@ -19,13 +19,13 @@ class CompanyNetwork extends Migration
             $table->timestamps();
         });
 
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+//        Schema::create('users', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('username')->unique();
+//            $table->string('password');
+//            $table->rememberToken();
+//            $table->timestamps();
+//        });
 
         Schema::create('administrator', function (Blueprint $table) {
             $table->increments('id');
@@ -73,6 +73,7 @@ class CompanyNetwork extends Migration
             $table->string('product_name');
             $table->longText('product_detail');
             $table->string('product_picture');
+            $table->integer('general_price');
             $table->integer('product_price');
             $table->timestamps();
         });
@@ -83,12 +84,6 @@ class CompanyNetwork extends Migration
             $table->longText('promote_detail');
             $table->timestamps();
         });
-
-        // Schema::create('quotation_count', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->integer('quotation_no')->unsigned();
-        //     $table->timestamps();
-        // });
 
         Schema::create('create_quotation', function (Blueprint $table) {
             $table->increments('id');
@@ -140,11 +135,6 @@ class CompanyNetwork extends Migration
             $table->timestamps();
         });
 
-        Schema::create('report_members', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('count');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -155,7 +145,7 @@ class CompanyNetwork extends Migration
     public function down()
     {
         Schema::drop('banner');
-        Schema::drop('users');
+//        Schema::drop('users');
         Schema::drop('administrator');
         Schema::drop('main_category');
         Schema::drop('category');
@@ -163,7 +153,6 @@ class CompanyNetwork extends Migration
         Schema::drop('product');
         Schema::drop('custom_product');
         Schema::drop('promote');
-        // Schema::drop('quotation_count');
         Schema::drop('create_quotation');
         Schema::drop('quotation_product');
         Schema::drop('how_to_buy');
@@ -171,6 +160,5 @@ class CompanyNetwork extends Migration
         Schema::drop('about');
         Schema::drop('contact');
         Schema::drop('report_website_visitors');
-        Schema::drop('report_members');
     }
 }
