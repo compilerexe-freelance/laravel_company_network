@@ -323,7 +323,7 @@
                 <!--<span style="font-size: 12px;"><b>&ensp;หน้าที่</b>&ensp;&ensp;&ensp;&ensp;&nbsp;&ensp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @php echo $current_page." / ".$max_page; @endphp</span><br>-->
                 &ensp;<span style="font-size: 12px;"><b>เลขที่เอกสาร</b>&ensp;&ensp;&ensp;&ensp;&nbsp; @php echo sprintf("%08d", session()->get('get_quotation_id')); @endphp</span><br>
                 &ensp;<span style="font-size: 12px;"><b>เงื่อนไขการชำระ</b>&nbsp; ทั่วไป</span><br>
-                &ensp;<span style="font-size: 12px;"><b>วันที่หมดอายุ</b>&ensp;&ensp;&ensp;&ensp; ...</span><br>
+                &ensp;<span style="font-size: 12px;"><b>วันที่หมดอายุ</b>&ensp;&ensp;&ensp;&ensp; @php echo session()->get('expired'); @endphp</span><br>
                 &ensp;<span style="font-size: 12px;"><b>พนักงานขาย</b>&ensp;&ensp;&ensp;&ensp;&nbsp; ...</span><br>
                 &ensp;<span style="font-size: 12px;"><b>วิธีจัดส่ง</b>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ไม่ได้กำหนด</span><br>
                 &ensp;<span style="font-size: 12px;"><b>ผู้พิมพ์</b>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ...</span>
