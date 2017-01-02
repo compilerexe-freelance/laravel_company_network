@@ -6,7 +6,7 @@
         @endif
 
         @if (session('status') == 'error')
-            swal("", "Please upload file type jpg or png only.", "error")
+            swal("", "Please upload file type jpg, png, pdf.", "error")
         @endif
     </script>
 
@@ -23,7 +23,7 @@
                         {{ csrf_field() }}
                         <div class="col-md-4 col-md-offset-4">
                             <div class="form-group">
-                                <div class="form-group"><strong>QUOTATION ( FILE TYPE JPG, PNG )</strong></div>
+                                <div class="form-group"><strong>QUOTATION ( FILE TYPE JPG, PNG, PDF )</strong></div>
                                 <div class="form-group"><input type="file" name="file_upload1" required></div>
                                 <div class="form-group"><input type="file" name="file_upload2"></div>
                                 <div class="form-group"><input type="file" name="file_upload3"></div>

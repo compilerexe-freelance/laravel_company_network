@@ -228,7 +228,7 @@ class UserController extends Controller
                 File::makeDirectory($destinationPath, 0775);
             }
             $extension = Input::file('file_upload1')->getClientOriginalExtension();
-            if ($extension != 'jpg' && $extension != 'png') {
+            if (($extension != 'jpg' && $extension != 'png') && $extension != 'pdf') {
                 return redirect()->back()->with('status', 'error');
             }
             $filename = rand(111111111,999999999).'.'.$extension;
@@ -242,7 +242,7 @@ class UserController extends Controller
                 File::makeDirectory($destinationPath, 0775);
             }
             $extension = Input::file('file_upload2')->getClientOriginalExtension();
-            if ($extension != 'jpg' && $extension != 'png') {
+            if (($extension != 'jpg' && $extension != 'png') && $extension != 'pdf') {
                 return redirect()->back()->with('status', 'error');
             }
             $filename = rand(111111111,999999999).'.'.$extension;
@@ -256,7 +256,7 @@ class UserController extends Controller
                 File::makeDirectory($destinationPath, 0775);
             }
             $extension = Input::file('file_upload3')->getClientOriginalExtension();
-            if ($extension != 'jpg' && $extension != 'png') {
+            if (($extension != 'jpg' && $extension != 'png') && $extension != 'pdf') {
                 return redirect()->back()->with('status', 'error');
             }
             $filename = rand(111111111,999999999).'.'.$extension;
@@ -270,7 +270,7 @@ class UserController extends Controller
                 File::makeDirectory($destinationPath, 0775);
             }
             $extension = Input::file('file_upload4')->getClientOriginalExtension();
-            if ($extension != 'jpg' && $extension != 'png') {
+            if (($extension != 'jpg' && $extension != 'png') && $extension != 'pdf') {
                 return redirect()->back()->with('status', 'error');
             }
             $filename = rand(111111111,999999999).'.'.$extension;
@@ -284,7 +284,7 @@ class UserController extends Controller
                 File::makeDirectory($destinationPath, 0775);
             }
             $extension = Input::file('file_upload5')->getClientOriginalExtension();
-            if ($extension != 'jpg' && $extension != 'png') {
+            if (($extension != 'jpg' && $extension != 'png') && $extension != 'pdf') {
                 return redirect()->back()->with('status', 'error');
             }
             $filename = rand(111111111,999999999).'.'.$extension;
