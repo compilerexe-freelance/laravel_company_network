@@ -43,7 +43,7 @@ class CompanyNetwork extends Migration
 
         Schema::create('category', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('main_category_id');
+            $table->integer('main_category_id')->unsigned();
             $table->string('category_name');
             $table->tinyInteger('filter_category');
             $table->timestamps();
@@ -51,14 +51,14 @@ class CompanyNetwork extends Migration
 
         Schema::create('sub_category', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id');
+            $table->integer('category_id')->unsigned();
             $table->string('sub_category_name');
             $table->timestamps();
         });
 
         Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sub_category_id');
+            $table->integer('sub_category_id')->unsigned();
             $table->string('product_name');
             $table->longText('product_detail');
             $table->string('product_picture');
@@ -69,7 +69,7 @@ class CompanyNetwork extends Migration
 
         Schema::create('custom_product', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
             $table->string('product_name');
             $table->longText('product_detail');
             $table->string('product_picture');
@@ -87,7 +87,7 @@ class CompanyNetwork extends Migration
 
         Schema::create('create_quotation', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('quotation_product_id');
+            //$table->integer('quotation_product_id');
             $table->string('company_name');
             $table->string('address');
             $table->string('full_name');
@@ -99,7 +99,7 @@ class CompanyNetwork extends Migration
         Schema::create('quotation_product', function (Blueprint $table) {
             $table->increments('id');
             // $table->string('create_quotation_id');
-            $table->string('product_id');
+            $table->integer('product_id')->unsigned();
             $table->string('array_custom_product');
             $table->timestamps();
         });

@@ -97,7 +97,7 @@
     }
 
     $create_quotation = App\CreateQuotation::find(session()->get('get_quotation_id'));
-    $quotation_product = App\QuotationProduct::find($create_quotation->quotation_product_id);
+    $quotation_product = App\QuotationProduct::find($create_quotation->id);
     $product = App\Product::find($quotation_product->product_id);
     $count_item = 1;
     $current_page = 1;
@@ -195,7 +195,7 @@
 
             @php
               $create_quotation = App\CreateQuotation::find(session()->get('get_quotation_id'));
-              $quotation_product = App\QuotationProduct::find($create_quotation->quotation_product_id);
+              $quotation_product = App\QuotationProduct::find($create_quotation->id);
               $product = App\Product::find($quotation_product->product_id);
               $total_price = $total_price + $product->product_price;
               $no = 1;

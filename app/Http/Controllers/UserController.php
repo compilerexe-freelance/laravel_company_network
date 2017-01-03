@@ -184,7 +184,7 @@ class UserController extends Controller
             $quotation_product->array_custom_product = session()->get('extension');
             $quotation_product->save();
             $create_quotation = new CreateQuotation;
-            $create_quotation->quotation_product_id = $quotation_product->id;
+            // $create_quotation->quotation_product_id = $quotation_product->id;
             $create_quotation->company_name = $request->company_name;
             $create_quotation->address = $request->address;
             $create_quotation->full_name = $request->full_name;
