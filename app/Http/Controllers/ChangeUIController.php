@@ -7,6 +7,7 @@ use App\Banner;
 use App\About;
 use App\HowToBuy;
 use App\Contact;
+use App\InformationIndex;
 use File;
 use Input;
 
@@ -106,6 +107,25 @@ class ChangeUIController extends Controller
             $create_contact->contact_detail = $request->contact_detail;
             $create_contact->contact_map = $request->contact_map;
             $create_contact->save();
+        }
+        return redirect()->back();
+    }
+
+    public function getInformationIndex() {
+        $information_index = InformationIndex::find(1);
+        return view('admin.change_ui.information_index')
+        ->with('information_index', $information_index);
+    }
+
+    public function postEditInformationIndex(Request $request) {
+        $information_index = InformationIndex::find(1);
+        if ($information_index) {
+            $information_index->information_detail = $request->information_detail;
+            $information_index->save();
+        } else {
+            $create_information_index = new InformationIndex;
+            $create_information_index->information_detail = $request->information_detail;
+            $create_information_index->save();
         }
         return redirect()->back();
     }

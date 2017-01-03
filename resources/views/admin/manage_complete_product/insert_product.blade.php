@@ -62,9 +62,9 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-right table-none-border">Product Price</td>
+                    <td class="text-right table-none-border">Special Price</td>
                     <td class="table-none-border text-left">
-                      <input type="text" class="form-control" name="product_price">
+                      <input type="text" class="form-control" name="special_price">
                     </td>
                   </tr>
                   <tr>

@@ -48,7 +48,7 @@ class CompleteProductController extends Controller
             $product->product_picture = $filename;
         }
         $product->general_price = $request->general_price;
-        $product->product_price = $request->product_price;
+        $product->special_price = $request->special_price;
         $product->save();
         return redirect()->route('manage_complete_product');
     }
@@ -83,7 +83,7 @@ class CompleteProductController extends Controller
             $product->product_picture = $filename;
         }
         $product->general_price = $request->general_price;
-        $product->product_price = $request->product_price;
+        $product->special_price = $request->special_price;
         $product->save();
         return redirect()->route('manage_complete_product');
     }
@@ -118,7 +118,7 @@ class CompleteProductController extends Controller
             $custom_product->product_picture = $filename;
         }
         $custom_product->general_price = $request->general_price;
-        $custom_product->product_price = $request->product_price;
+        $custom_product->special_price = $request->special_price;
         $custom_product->save();
         return redirect()->route('manage_complete_product');
     }
@@ -152,7 +152,7 @@ class CompleteProductController extends Controller
             $custom_product->product_picture = $filename;
         }
         $custom_product->general_price = $request->general_price;
-        $custom_product->product_price = $request->product_price;
+        $custom_product->special_price = $request->special_price;
         $custom_product->save();
         return redirect()->route('manage_complete_product');
     }

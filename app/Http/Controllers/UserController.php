@@ -12,6 +12,7 @@ use App\Promote;
 use App\About;
 use App\HowToBuy;
 use App\Contact;
+use App\InformationIndex;
 use App\QuotationProduct;
 use App\CreateQuotation;
 use App\QuotationUploads;
@@ -35,9 +36,11 @@ class UserController extends Controller
     public function getHome(Request $request) {
         session(['menu_active' => 'Home']);
         $this->website_visitors($request);
+        $information_index = InformationIndex::find(1);
         $products = Product::latest()->get();
         $promotes = Promote::all();
         return view('user.home')
+        ->with('information_index', $information_index)
         ->with('products', $products)
         ->with('promotes', $promotes);
     }
@@ -184,7 +187,6 @@ class UserController extends Controller
             $quotation_product->array_custom_product = session()->get('extension');
             $quotation_product->save();
             $create_quotation = new CreateQuotation;
-            // $create_quotation->quotation_product_id = $quotation_product->id;
             $create_quotation->company_name = $request->company_name;
             $create_quotation->address = $request->address;
             $create_quotation->full_name = $request->full_name;
@@ -194,11 +196,27 @@ class UserController extends Controller
             $get_quotation = CreateQuotation::find($create_quotation->id);
             session(['get_quotation_id' => $get_quotation->id]);
             $pdf = PDF::loadView('pdf.document');
-            return $pdf->stream('document.pdf');
+
+            $destinationPath = 'uploads/create_quotations/';
+            if (!file_exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0775);
+            }
+            $filename = $destinationPath.sprintf("%08d", $get_quotation->id).'.pdf';
+            $pdf->save($filename);
+            // return $pdf->stream(sprintf("%08d", $get_quotation->id).'.pdf');
+            // return $pdf->stream('uploads/create_quotations/00000001.pdf');
+
+
+            $filename = sprintf("%08d", $get_quotation->id).'.pdf';
+            $file = 'uploads/create_quotations/'.$filename;
+            header('Content-type: application/pdf');
+            header('Content-Disposition: inline; filename="' . $filename . '"');
+            header('Content-Transfer-Encoding: binary');
+            header('Accept-Ranges: bytes');
+            echo file_get_contents($file);
         } else {
             return redirect()->route('home');
         }
-
     }
 
     public function getMemberQuotation(Request $request) {
@@ -215,6 +233,7 @@ class UserController extends Controller
     }
 
     public function getFormUploadQuotation(Request $request) {
+        session(['menu_active' => 'UploadQuotation']);
         $this->website_visitors($request);
         return view('user.quotation_form_upload');
     }
@@ -223,7 +242,7 @@ class UserController extends Controller
         $quotation_uploads = new QuotationUploads;
         $filename = "";
         if ($request->file('file_upload1') != '') {
-            $destinationPath = 'uploads/quotations/';
+            $destinationPath = 'uploads/quotation_uploads/';
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
             }
@@ -237,7 +256,7 @@ class UserController extends Controller
             $quotation_uploads->save();
         }
         if ($request->file('file_upload2') != '') {
-            $destinationPath = 'uploads/quotations/';
+            $destinationPath = 'uploads/quotation_uploads/';
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
             }
@@ -251,7 +270,7 @@ class UserController extends Controller
             $quotation_uploads->save();
         }
         if ($request->file('file_upload3') != '') {
-            $destinationPath = 'uploads/quotations/';
+            $destinationPath = 'uploads/quotation_uploads/';
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
             }
@@ -265,7 +284,7 @@ class UserController extends Controller
             $quotation_uploads->save();
         }
         if ($request->file('file_upload4') != '') {
-            $destinationPath = 'uploads/quotations/';
+            $destinationPath = 'uploads/quotation_uploads/';
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
             }
@@ -279,7 +298,7 @@ class UserController extends Controller
             $quotation_uploads->save();
         }
         if ($request->file('file_upload5') != '') {
-            $destinationPath = 'uploads/quotations/';
+            $destinationPath = 'uploads/quotation_uploads/';
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
             }

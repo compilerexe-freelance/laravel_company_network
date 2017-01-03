@@ -1,8 +1,8 @@
 @extends('layouts.header') @section('content')
 
 <script>
-  var sum = {{ $product->product_price }};
-  var vat = @php echo 0.07 * $product->product_price; @endphp;
+  var sum = {{ $product->special_price }};
+  var vat = @php echo 0.07 * $product->special_price; @endphp;
   var inc_vat = sum + vat;
 
   var extension = [];
@@ -22,9 +22,12 @@
                           <span style="font-size: 26px; color: blue;">{{ $product->product_name }}</span>
                         </div>
                     </div>
-                    <div class="col-md-10 col-md-offset-1 text-center">
-                        <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive" style="margin: auto;">
-                    </div>
+
+                    @if ($product->product_picture != null)
+                      <div class="col-md-10 col-md-offset-1 text-center">
+                          <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive" style="margin: auto;">
+                      </div>
+                    @endif
 
                     <div class="col-md-10 col-md-offset-2">
                       <div class="form-group">
@@ -34,10 +37,16 @@
 
                     <div class="col-md-10 col-md-offset-2" style="text-align: right;">
                         <div class="form-group">
+                          @if ($product->special_price != null)
                             <span style="font-size: 16px;">ราคาปกติ {{ number_format($product->general_price) }} บาท</span>
+                          @else
+                            <span style="font-size: 16px;">ราคา {{ number_format($product->general_price) }} บาท</span>
+                          @endif
                         </div>
                         <div class="form-group">
-                            <span style="color: green; font-size: 18px;">ราคาพิเศษ {{ number_format($product->product_price) }} บาท</span>
+                          @if ($product->special_price != null)
+                            <span style="color: green; font-size: 18px;">ราคาพิเศษ {{ number_format($product->special_price) }} บาท</span>
+                          @endif
                         </div>
                     </div>
 
@@ -58,7 +67,13 @@
                                 <tbody>
                                     <tr class="table-none-border">
                                         <td class="table-none-border">SUM</td>
-                                        <td class="table-none-border"><span id="sum">{{ number_format($product->product_price,2) }}</span></td>
+                                        <td class="table-none-border">
+                                          @if ($product->special_price != null)
+                                            <span id="sum">{{ number_format($product->special_price,2) }}</span>
+                                          @else
+                                            <span id="sum">{{ number_format($product->general_price,2) }}</span>
+                                          @endif
+                                        </td>
                                         <td class="table-none-border">บาท</td>
                                     </tr>
                                     <tr class="table-none-border">
@@ -66,8 +81,13 @@
                                         <td class="table-none-border">
                                           <span id="vat">
                                             @php
-                                              $vat = 0.07 * $product->product_price;
-                                              echo number_format($vat, 2);
+                                              if ($product->special_price != null) {
+                                                $vat = 0.07 * $product->special_price;
+                                                echo number_format($vat, 2);
+                                              } else {
+                                                $vat = 0.07 * $product->general_price;
+                                                echo number_format($vat, 2);
+                                              }
                                             @endphp
                                           </span>
                                         </td>
@@ -78,8 +98,13 @@
                                         <td class="table-none-border">
                                           <span id="inc_vat">
                                             @php
-                                              $inc_vat = $product->product_price + $vat;
-                                              echo number_format($inc_vat, 2);
+                                              if ($product->special_price != null) {
+                                                $inc_vat = $product->special_price + $vat;
+                                                echo number_format($inc_vat, 2);
+                                              } else {
+                                                $inc_vat = $product->general_price + $vat;
+                                                echo number_format($inc_vat, 2);
+                                              }
                                             @endphp
                                           </span>
                                         </td>
@@ -105,10 +130,21 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($custom_products as $custom_product)
+                                      @php
+                                        if ($custom_product->special_price != null) {
+                                          $check_price = $custom_product->special_price;
+                                        } else {
+                                          $check_price = $custom_product->general_price;
+                                        }
+                                      @endphp
                                       <tr>
-                                        <td class="table-none-border"><img src="{{ url('uploads/products/'.$custom_product->product_picture) }}" alt="" class="img-responsive"></td>
+                                        <td class="table-none-border">
+                                          @if ($custom_product->product_picture != null)
+                                            <img src="{{ url('uploads/products/'.$custom_product->product_picture) }}" alt="" class="img-responsive">
+                                          @endif
+                                        </td>
                                         <td class="table-none-border">{{ $custom_product->product_name }}</td>
-                                        <td class="table-none-border">+{{ number_format($custom_product->product_price) }} Baht</td>
+                                        <td class="table-none-border">+{{ number_format($check_price) }} Baht</td>
                                         <td class="table-none-border"><button type="button" id="btn_add_{{ $custom_product->id }}" class="btn btn-success" style="width: 100px;">Add</button></td>
                                         <td class="table-none-border"><button type="button" id="btn_remove_{{ $custom_product->id }}" class="btn btn-warning" style="width: 100px;">Remove</button></td>
                                       </tr>
@@ -116,7 +152,7 @@
                                       <script>
                                         $(document).ready(function() {
                                           $('#btn_add_{{ $custom_product->id }}').on('click', function() {
-                                            sum = sum + {{ $custom_product->product_price }};
+                                            sum = sum + {{ $check_price }};
                                             vat = 0.07 * sum;
                                             inc_vat = sum + vat;
                                             $(this).prop('disabled', true);
@@ -135,7 +171,7 @@
                                           });
                                           $('#btn_remove_{{ $custom_product->id }}').on('click', function() {
                                             if ($('#btn_add_{{ $custom_product->id }}').prop('disabled')) {
-                                              sum = sum - {{ $custom_product->product_price }};
+                                              sum = sum - {{ $check_price }};
                                               vat = 0.07 * sum;
                                               inc_vat = sum + vat;
                                               $('#btn_add_{{ $custom_product->id }}').prop('disabled', false);

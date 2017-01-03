@@ -47,7 +47,7 @@
                     <strong style="font-size: 18px; //color: white;">Company</strong>
                 </div>
                 <div class="panel-body">
-                    <span>ยินดีต้อนรับเข้าสู่ Company Network บริษัทเราคือผู้นำด้าน ...</span>
+                    {!! $information_index->information_detail !!}
                 </div>
             </div>
 
@@ -75,12 +75,17 @@
                               <span style="font-size: 18px;">{{ $product->product_name }}</span>
                           </div>
                       </div>
-                      <div class="col-md-4">
-                          <!-- <a href="{{ url('product/detail') }}"> -->
-                              <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive">
-                          <!-- </a> -->
-                      </div>
-                      <div class="col-md-8">
+                      @if ($product->product_picture != null)
+                        <div class="col-md-4">
+                            <!-- <a href="{{ url('product/detail') }}"> -->
+                                <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive">
+                            <!-- </a> -->
+                        </div>
+                        <div class="col-md-8">
+                      @else
+                        <div class="col-md-12">
+                      @endif
+
                           {!! $product->product_detail !!}
 
                           <div class="text-right">

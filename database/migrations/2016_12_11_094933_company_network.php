@@ -60,10 +60,10 @@ class CompanyNetwork extends Migration
             $table->increments('id');
             $table->integer('sub_category_id')->unsigned();
             $table->string('product_name');
-            $table->longText('product_detail');
-            $table->string('product_picture');
-            $table->integer('general_price');
-            $table->integer('product_price');
+            $table->longText('product_detail')->nullable();
+            $table->string('product_picture')->nullable();
+            $table->integer('general_price')->nullable();
+            $table->integer('special_price')->nullable();
             $table->timestamps();
         });
 
@@ -71,10 +71,10 @@ class CompanyNetwork extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->string('product_name');
-            $table->longText('product_detail');
-            $table->string('product_picture');
-            $table->integer('general_price');
-            $table->integer('product_price');
+            $table->longText('product_detail')->nullable();
+            $table->string('product_picture')->nullable();
+            $table->integer('general_price')->nullable();
+            $table->integer('special_price')->nullable();
             $table->timestamps();
         });
 
@@ -129,6 +129,12 @@ class CompanyNetwork extends Migration
             $table->timestamps();
         });
 
+        Schema::create('information_index', function (Blueprint $table) {
+            $table->increments('id');
+            $table->longText('information_detail');
+            $table->timestamps();
+        });
+
         Schema::create('report_website_visitors', function (Blueprint $table) {
             $table->increments('id');
             $table->ipAddress('ip_address');
@@ -159,6 +165,7 @@ class CompanyNetwork extends Migration
         Schema::drop('quotation_uploads');
         Schema::drop('about');
         Schema::drop('contact');
+        Schema::drop('information_index');
         Schema::drop('report_website_visitors');
     }
 }

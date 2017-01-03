@@ -14,6 +14,6 @@ class Product extends Model
       'product_detail',
       'product_picture',
       'general_price',
-      'product_price'
+      'special_price'
     ];
 }

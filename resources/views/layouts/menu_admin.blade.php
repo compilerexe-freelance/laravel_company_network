@@ -83,6 +83,7 @@
 
           <ul class="dropdown-menu">
             <li><a href="{{ url('admin/change_ui/banner') }}">Banner</a></li>
+            <li><a href="{{ url('admin/change_ui/information_index') }}">Information Index</a></li>
             <li><a href="{{ url('admin/change_ui/about') }}">About</a></li>
             <li><a href="{{ url('admin/change_ui/how_to_buy') }}">How to buy</a></li>
             <li><a href="{{ url('admin/change_ui/contact') }}">Contact</a></li>

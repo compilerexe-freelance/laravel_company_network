@@ -85,9 +85,9 @@
                                     <td class="table-none-border"></td>
                                 </tr>
                                 <tr id="type_complete">
-                                    <td class="text-right table-none-border">Product Price</td>
+                                    <td class="text-right table-none-border">Special Price</td>
                                     <td class="table-none-border text-left">
-                                        <input type="text" class="form-control" name="product_price" value="{{ $get_complete_product->product_price }}">
+                                        <input type="text" class="form-control" name="special_price" value="{{ $get_complete_product->special_price }}">
                                     </td>
                                     <td class="table-none-border"></td>
                                 </tr>

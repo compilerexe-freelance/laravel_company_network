@@ -7,6 +7,8 @@ use App\ReportMembers;
 use App\ReportWebsiteVisitors;
 use App\CreateQuotation;
 use App\QuotationProduct;
+use App\Product;
+use App\CustomProduct;
 
 class ReportController extends Controller
 {
@@ -31,10 +33,22 @@ class ReportController extends Controller
 
     public function getViewQuotations(Request $request) {
         session(['menu_active' => 'Report']);
-        $quotation = CreateQuotation::find($request->id);
-        $quotation_product = QuotationProduct::find($quotation->quotation_product_id);
-        return view('admin.reports.view_quotation')
-        ->with('quotation', $quotation)
-        ->with('quotation_product', $quotation_product);
+
+        $filename = sprintf("%08d", $request->id).'.pdf';
+        $file = 'uploads/create_quotations/'.$filename;
+        header('Content-type: application/pdf');
+        header('Content-Disposition: inline; filename="' . $filename . '"');
+        header('Content-Transfer-Encoding: binary');
+        header('Accept-Ranges: bytes');
+        echo file_get_contents($file);
+
+        // $quotation = CreateQuotation::find($request->id);
+        // $quotation_product = QuotationProduct::find($quotation->id);
+        // $product = Product::find($quotation_product->product_id);
+        //
+        // return view('admin.reports.view_quotation')
+        // ->with('quotation', $quotation)
+        // ->with('quotation_product', $quotation_product)
+        // ->with('product', $product);
     }
 }

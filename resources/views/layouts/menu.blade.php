@@ -213,8 +213,12 @@ $sub_categorys = SubCategory::all();
         <a href="{{ url('how_to_buy') }}">HOW TO BUY</a>
       </li>
 
-      <li>
-        <a href="{{ url('quotation/upload') }}">UPLOAD_QUOTATION</a>
+      @if (session()->get('menu_active') == 'UploadQuotation')
+        <li class="active">
+      @else
+        <li>
+      @endif
+        <a href="{{ url('quotation/upload') }}">UPLOAD-QUOTATION</a>
       </li>
 
       @if (session()->get('menu_active') == 'Contact')

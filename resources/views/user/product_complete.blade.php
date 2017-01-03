@@ -55,9 +55,21 @@
                                           </thead>
                                           <tbody>
                                               <tr>
-                                                  <td><img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive" style="margin: auto;"></td>
+                                                  <td>
+                                                    @if ($product->product_picture != null)
+                                                      <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive" style="margin: auto;">
+                                                    @else
+                                                      <span>ยังไม่มีรูปสินค้าในขณะนี้</span>
+                                                    @endif
+                                                  </td>
                                                   <td class="text-left">{!! $product->product_detail !!}</td>
-                                                  <td>{{ number_format($product->product_price) }} Bath</td>
+                                                  <td>
+                                                    @if ($product->special_price != null)
+                                                      {{ number_format($product->special_price) }} Bath
+                                                    @else
+                                                      {{ number_format($product->general_price) }} Bath
+                                                    @endif
+                                                  </td>
                                                   <td><a href="{{ url('quotation/form/'.$product->id) }}"><button type="button" class="btn btn-success" style="width: 100%;"><i class="fa fa-shopping-cart fa-lg"></i> สร้างใบเสนอราคา</button></a></td>
                                                   <!-- <td><button type="button" class="btn btn-warning" style="width: 100px;">Remove</button></td> -->
                                               </tr>

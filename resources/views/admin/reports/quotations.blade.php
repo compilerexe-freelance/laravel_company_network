@@ -25,7 +25,7 @@
                                         <td>{{ sprintf("%08d", $quotation->id) }}</td>
                                         <td>{{ $quotation->company_name }}</td>
                                         <td>{{ $quotation->created_at }}</td>
-                                        <th><a href="{{ url('admin/report/quotations/'. $quotation->id) }}"><button type="button" class="btn btn-info" style="width: 100%;">View</button></a></th>
+                                        <th><a href="{{ url('admin/report/quotations/'. $quotation->id) }}" target="_blank"><button type="button" class="btn btn-info" style="width: 100%;">View</button></a></th>
                                     </tr>
                                 @endforeach
                             </tbody>

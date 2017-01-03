@@ -93,6 +93,8 @@ Route::group(['middleware' => ['VerifyAdmin']], function() {
       Route::post('how_to_buy/edit', 'ChangeUIController@postEditHowToBuy');
       Route::get('contact', 'ChangeUIController@getContact');
       Route::post('contact/edit', 'ChangeUIController@postEditContact');
+      Route::get('information_index', 'ChangeUIController@getInformationIndex');
+      Route::post('information_index/edit', 'ChangeUIController@postEditInformationIndex');
     });
 
     Route::group(['prefix' => 'report'], function() {

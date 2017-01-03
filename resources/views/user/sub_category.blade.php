@@ -46,9 +46,13 @@
                             <span style="font-size: 20px; color: blue;">{{ $product->product_name }}</span>
                         </div>
                     </div>
-                    <div class="col-md-12" style="//border: 1px solid red;">
-                        <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive" style=" //border: 1px solid red; margin: auto;">
-                    </div>
+
+                    @if ($product->product_picture != null)
+                      <div class="col-md-12" style="//border: 1px solid red;">
+                          <img src="{{ url('uploads/products/'.$product->product_picture) }}" alt="" class="img-responsive" style=" //border: 1px solid red; margin: auto;">
+                      </div>
+                    @endif
+
                     <div class="col-md-8">
                         {!! $product->product_detail !!}
                     </div>
@@ -66,22 +70,30 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>ราคาปกติ</td>
+                                            <td>
+                                              @if ($product->special_price != null)
+                                                <span>ราคาปกติ</span>
+                                              @else
+                                                <span>ราคา</span>
+                                              @endif
+                                            </td>
                                             <td>{{ number_format($product->general_price) }}</td>
                                             <td>บาท</td>
                                         </tr>
+                                        @if ($product->special_price != null)
                                         <tr>
-                                            <td>ราคาของเรา</td>
-                                            <td>{{ number_format($product->product_price) }}</td>
+                                            <td>ราคาพิเศษ</td>
+                                            <td>{{ number_format($product->special_price) }}</td>
                                             <td>บาท</td>
                                         </tr>
                                         <tr class="success">
                                             <td>ประหยัด</td>
                                             <td>
-                                                @php $discount = $product->general_price - $product->product_price; echo number_format($discount); @endphp
+                                                @php $discount = $product->general_price - $product->special_price; echo number_format($discount); @endphp
                                             </td>
                                             <td>บาท</td>
                                         </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                                 <button type="submit" class="btn btn-success" style="margin-top: 20px;"><i class="fa fa-shopping-cart fa-lg"></i> สร้างใบเสนอราคา</button>

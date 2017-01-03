@@ -197,20 +197,46 @@
               $create_quotation = App\CreateQuotation::find(session()->get('get_quotation_id'));
               $quotation_product = App\QuotationProduct::find($create_quotation->id);
               $product = App\Product::find($quotation_product->product_id);
-              $total_price = $total_price + $product->product_price;
+
+              if ($product->special_price != null) {
+                $total_price = $total_price + $product->special_price;
+              } else {
+                $total_price = $total_price + $product->general_price;
+              }
+
               $no = 1;
             @endphp
 
             <tr>
               <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>@php echo $no; @endphp</td>
               <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>@php echo $product->product_name; @endphp</td>
-              <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'><img src="{{ url('uploads/products/'.$product->product_picture) }}" style="width: 80px; height: 100px;"></td>
+              <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>
+                @if ($product->product_picture != null)
+                  <img src="{{ url('uploads/products/'.$product->product_picture) }}" style="width: 80px; height: 100px;">
+                @endif
+              </td>
               <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>PCS.</td>
               <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>1</td>
               <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'></td>
-              <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>@php echo number_format($product->product_price, 2); @endphp</td>
+              <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>
+                @php
+                  if ($product->special_price != null) {
+                    echo number_format($product->special_price, 2);
+                  } else {
+                    echo number_format($product->general_price, 2);
+                  }
+                @endphp
+              </td>
               <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'></td>
-              <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>@php echo number_format($product->product_price, 2); @endphp</td>
+              <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>
+                @php
+                  if ($product->special_price != null) {
+                    echo number_format($product->special_price, 2);
+                  } else {
+                    echo number_format($product->general_price, 2);
+                  }
+                @endphp
+              </td>
             </tr>
 
             @php
@@ -225,21 +251,36 @@
                   foreach ($array_custom_product as $key => $value) {
                     $id = str_replace('"', "", $value);
                     $custom_product = App\CustomProduct::find($id);
+
+                    if ($custom_product->special_price != null) {
+                      $special_price = $custom_product->special_price;
+                    } else {
+                      $special_price = $custom_product->general_price;
+                    }
+
                     $no++;
                     echo "
                     <tr>
                       <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>". $no ."</td>
                       <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>". $custom_product->product_name ."</td>
-                      <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'><img src=\"uploads/products/". $custom_product->product_picture ."\" style=\"width: 80px; height: 100px;\"></td>
+                      <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>
+                      ";
+
+                      if ($custom_product->product_picture != null) {
+                        echo "<img src=\"uploads/products/". $custom_product->product_picture ."\" style=\"width: 80px; height: 100px;\">";
+                      }
+
+                    echo "
+                      </td>
                       <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>PCS.</td>
                       <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>1</td>
                       <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'></td>
-                      <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>". number_format($custom_product->product_price, 2) ."</td>
+                      <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>". number_format($special_price, 2) ."</td>
                       <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'></td>
-                      <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>". number_format($custom_product->product_price, 2) ."</td>
+                      <td style='font-size: 12px; text-align: center; border: 1px solid #b3b3b3;'>". number_format($special_price, 2) ."</td>
                     </tr>
                     ";
-                    $total_price = $total_price + $custom_product->product_price;
+                    $total_price = $total_price + $special_price;
                   }
                 }
             @endphp
