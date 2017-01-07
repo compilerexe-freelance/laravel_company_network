@@ -27,8 +27,8 @@
                           </tr>
                           <tr>
                             <td class="table-none-border">
-                              <div id="summernote2">{{ $contact->contact_map }}</div>
-                              <input type="hidden" name="contact_map" id="contact_map" value="{{ $contact->contact_map }}">
+                              <!-- <div id="summernote2">{{ $contact->contact_map }}</div> -->
+                              <textarea name="contact_map" id="contact_map" class="form-control" style="height: 300px; resize: none;" rows="8" cols="80">{{ $contact->contact_map }}</textarea>
                             </td>
                           </tr>
                           <tr>
@@ -57,13 +57,13 @@
             // console.log(contents);
         });
 
-        $('#summernote2').summernote({
-            height: 300
-        });
-        $('#summernote2').on('summernote.change', function(we, contents, $editable) {
-            $('#contact_map').val(contents);
-            // console.log(contents);
-        });
+        // $('#summernote2').summernote({
+        //     height: 300
+        // });
+        // $('#summernote2').on('summernote.change', function(we, contents, $editable) {
+        //     $('#contact_map').val(contents);
+        //     // console.log(contents);
+        // });
 
       });
     </script>
